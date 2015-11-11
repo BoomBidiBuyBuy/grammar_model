@@ -1,0 +1,113 @@
+{
+	"rules": [
+		{
+			"name": "Create POOL",
+			"type": "POOL",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "*",
+					"terminal": false
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify POOL",
+			"type": "POOL",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": true,
+						"symbol": {
+							"name": "NAS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete POOL",
+			"type": "POOL",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false
+					}
+				}
+			}
+		}
+	]
+}

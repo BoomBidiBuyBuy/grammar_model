@@ -1,0 +1,123 @@
+{
+	"rules": [
+		{ 
+			"name": "Create NAS",
+			"type": "NAS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "POOL",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "FI",
+								"terminal": false
+							},
+							{
+								"name": "DNS",
+								"terminal": false
+							},
+							{
+								"name": "CIFS",
+								"terminal": false
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							},
+							{
+								"name": "FTP",
+								"terminal": false
+							},
+							{
+								"name": "NIS",
+								"terminal": false
+							},
+							{
+								"name": "LDAP",
+								"terminal": false
+							},
+							{
+								"name": "ASA",
+								"terminal": false
+							},
+							{
+								"name": "NDMP",
+								"terminal": false
+							},
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "FS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NAS",
+			"type": "NAS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NAS",
+			"type": "NAS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false
+				}
+			}
+		}		
+	]
+}

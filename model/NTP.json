@@ -1,0 +1,85 @@
+{
+	"rules": [
+			{
+			"name": "Create NTP",
+			"type": "NTP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": false
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NTP",
+			"type": "NTP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NTP",
+			"type": "NTP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": false
+					}
+				}
+			}
+		}
+	]
+}
