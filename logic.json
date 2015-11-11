@@ -1,0 +1,1849 @@
+{
+	"rules": [
+		{
+			"name": "Create POOL",
+			"type": "POOL",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "*",
+					"terminal": false
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify POOL",
+			"type": "POOL",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": true,
+						"symbol": {
+							"name": "NAS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete POOL",
+			"type": "POOL",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false,
+						"symbol": {
+							"name": "POOL",
+							"terminal": true,
+							"symbol": {
+								"name": "NAS",
+								"terminal": false
+							}
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "POOL",
+						"terminal": false
+					}
+				}
+			}
+		},
+		{ 
+			"name": "Create NAS",
+			"type": "NAS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "POOL",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "FI",
+								"terminal": false
+							},
+							{
+								"name": "DNS",
+								"terminal": false
+							},
+							{
+								"name": "CIFS",
+								"terminal": false
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							},
+							{
+								"name": "FTP",
+								"terminal": false
+							},
+							{
+								"name": "NIS",
+								"terminal": false
+							},
+							{
+								"name": "LDAP",
+								"terminal": false
+							},
+							{
+								"name": "ASA",
+								"terminal": false
+							},
+							{
+								"name": "NDMP",
+								"terminal": false
+							},
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "FS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NAS",
+			"type": "NAS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NAS",
+			"type": "NAS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false
+				}
+			}
+		},
+		{
+			"name": "Create FI",
+			"type": "FI",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify FI",
+			"type": "FI",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete FI",
+			"type": "FI",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false
+				}
+			}
+		},
+		{
+			"name": "Create NTP",
+			"type": "NTP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": false
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NTP",
+			"type": "NTP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NTP",
+			"type": "NTP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": {
+						"name": "NTP",
+						"terminal": false
+					}
+				}
+			}
+		},
+		{
+			"name": "Create NDMP",
+			"type": "NDMP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NDMP",
+					"terminal": false					
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NDMP",
+					"terminal": true
+				}
+			}
+		},
+		{
+			"name": "Modify NDMP",
+			"type": "NDMP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NDMP",
+			"type": "NDMP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": false
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Create ASA",
+			"type": "ASA",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "ASA",
+					"terminal": false
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "ASA",
+					"terminal": true
+				}
+			}
+		},
+		{
+			"name": "Modify ASA",
+			"type": "ASA",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete ASA",
+			"type": "ASA",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": false
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Create CAVA",
+			"type": "CAVA",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}
+		},
+		{
+			"name": "Create CAVA for CIFSJ",
+			"type": "CAVA",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}
+		},
+		{
+			"name": "Modify CAVA",
+			"type": "CAVA",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}			
+		},
+		{
+			"name": "Modify CAVA for CIFSJ",
+			"type": "CAVA",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}			
+		},
+		{
+			"name": "Delete CAVA",
+			"type": "CAVA",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "CIFS_SA",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}			
+		},
+		{
+			"name": "Delete CAVA for CIFSJ",
+			"type": "CAVA",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": true
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "CAVA",
+								"terminal": false
+							},
+							{
+								"name": "CIFS_J",
+								"terminal": true
+							}
+						]
+					}
+				}	
+			}			
+		},
+		{
+			"name": "Create NIS",
+			"type": "NIS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NIS",
+			"type": "NIS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NIS",
+			"type": "NIS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "NIS",
+								"terminal": true
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name":  "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "NIS",
+								"terminal": false
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			}			
+		},
+		{
+			"name": "Create LDAP",
+			"type": "LDAP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": false
+							},
+							{
+								"name": "FI",
+								"terminal": false,
+								"symbol": {
+									"name": "FI",
+									"terminal": true
+								}
+							}							
+						]					
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": true
+							},
+							{
+								"name": "FI",
+								"terminal": false,
+								"symbol": {
+									"name": "FI",
+									"terminal": true
+								}
+							}							
+						]					
+					}
+				}				
+			}
+		},
+		{
+			"name": "Modify LDAP",
+			"type": "LDAP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": true
+							},
+							{
+								"name": "FI",
+								"terminal": false,
+								"symbol": {
+									"name": "FI",
+									"terminal": true
+								}
+							}							
+						]					
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": true
+							},
+							{
+								"name": "FI",
+								"terminal": false,
+								"symbol": {
+									"name": "FI",
+									"terminal": true
+								}
+							}							
+						]					
+					}
+				}				
+			}
+		},
+		{
+			"name": "Delete LDAP",
+			"type": "LDAP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": true
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name":  "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "LDAP",
+								"terminal": false
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"name": "Create FTP",
+			"type": "FTP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify FTP",
+			"type": "FTP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			}			
+		},
+		{
+			"name": "Delete FTP",
+			"type": "FTP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": false
+						}
+					}
+				}
+			}			
+		},
+		{
+			"name": "Create KERBEROS",
+			"type": "KERBEROS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify KERBEROS",
+			"type": "KERBEROS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": true
+						}
+					}
+				}
+			}			
+		},
+		{
+			"name": "Delete KERBEROS",
+			"type": "KERBEROS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "KERBEROS",
+							"terminal": false
+						}
+					}
+				}
+			}			
+		},
+		{
+			"name": "Create DNS",
+			"type": "DNS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify DNS",
+			"type": "DNS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS", 
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete DNS",
+			"type": "DNS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": false
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Create CIFS",
+			"type": "CIFS",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Create CIFS",
+			"type": "CIFS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{ 							
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS",
+												"terminal": false
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{ 
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}				
+			}
+		},
+		{
+			"name": "Modify CIFS",
+			"method": "modify",
+			"type": "CIFS",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify CIFS",
+			"method": "modify",
+			"type": "CIFS",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}	
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,					
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}				
+			}
+		},
+		{
+			"name": "Delete CIFS",
+			"type": "CIFS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS",
+							"terminal": false
+						}
+					}
+				}	
+			}
+		},
+		{
+			"name": "Delete CIFS",
+			"type": "CIFS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS",
+												"terminal": false
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}				
+			}
+		}
+	]
+}
