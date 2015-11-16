@@ -2,13 +2,20 @@ from core.parser import *
 import pytest
 import os
 
-@pytest.fixture
-def system_node(scope="module"):
+@pytest.fixture(scope="module")
+def system_node(request):
     path = os.path.dirname(__file__) + "\..\model\POOL.json"
     globals().update(load_model_file(path))
 
     root_node = Node(name="*", terminal=False)
     root_node.add(Node(POOL.name, terminal=False))
+
+    def finalizer():
+        while len(POOL.list()):
+            POOL.delete(POOL.list()[0])
+
+    request.addfinalizer(finalizer)
+
     return root_node
 
 def test_pool_create(system_node):
@@ -17,9 +24,9 @@ def test_pool_create(system_node):
     def check_pool(p):
         assert p() in root_node.children[0].children
         assert p().parent == root_node.children[0]
-        assert p().name == 'POOL'
+        assert p().name == POOL.name
         assert p().terminal == True
-        assert len(p().children) == 1 # NAS
+        assert len(p().children) == 1  # NAS
         assert hasattr(p(), 'id')
 
         nas = weakref.ref(p().children[0])
@@ -31,7 +38,7 @@ def test_pool_create(system_node):
 
     assert len(root_node.children) == 1
     assert root_node.children[0].parent == root_node
-    assert root_node.children[0].name == 'POOL'
+    assert root_node.children[0].name == POOL.name
     assert root_node.children[0].terminal == False
     assert len(root_node.children[0].children) == 0
     assert not hasattr(root_node.children[0], 'id')
@@ -54,6 +61,7 @@ def test_pool_create(system_node):
     del OBJECTS[POOL.name]
     del root_node.children[0]
     root_node.add(Node(POOL.name, terminal=False))
+
 
 def test_pool_modify(system_node):
     root_node = system_node
@@ -88,6 +96,7 @@ def test_pool_modify(system_node):
     del root_node.children[0]
     root_node.add(Node(POOL.name, terminal=False))
 
+
 def test_pool_delete(system_node):
     root_node = system_node
 
@@ -119,4 +128,3 @@ def test_pool_delete(system_node):
 
     assert pool3() is None
     assert len(pool().children) == 0
-

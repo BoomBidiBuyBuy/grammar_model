@@ -352,11 +352,17 @@ def load_model_file(file_path):
 
     # list method for each class
     def list_method(cls):
-        def wrapper():
+        def wrapper(**kwargs):
             result = []
 
             for _, value in OBJECTS[cls.name].items():
-                result.append(value)
+
+                if len(kwargs):
+                    for filter_key, filter_value in kwargs.items():
+                        if hasattr(value, filter_key) and getattr(value, filter_key) == filter_value:
+                            result.append(value)
+                else:
+                    result.append(value)
 
             return result
 
@@ -375,6 +381,10 @@ def load_model_file(file_path):
         setattr(cls, r.method, r.apply)
         setattr(cls, 'name', r.type)
         setattr(cls, 'list', list_method(cls))
+
+        # register type to global list of objects
+        if not r.type in OBJECTS:
+            OBJECTS[r.type] = {}
 
     return export_classes
 

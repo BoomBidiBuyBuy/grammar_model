@@ -2,8 +2,8 @@ from core.parser import *
 import pytest
 import os
 
-@pytest.fixture
-def pool_nodes(scope="module"):
+@pytest.fixture(scope="module")
+def pool_nodes(request):
     path = os.path.dirname(__file__) + "\..\model\\"
     globals().update(load_model_file(path + "POOL.json"))
     globals().update(load_model_file(path + "NAS.json"))
@@ -14,23 +14,32 @@ def pool_nodes(scope="module"):
     pool1 = POOL.create(system_node)
     pool2 = POOL.create(system_node)
 
-    return (pool1, pool2)
+    def finalizer():
+        while len(NAS.list()):
+            NAS.delete(NAS.list()[0])
+
+        while len(POOL.list()):
+            POOL.delete(POOL.list()[0])
+
+    request.addfinalizer(finalizer)
+
+    return (pool1, pool2, system_node)
 
 def check_nas(nas, pool):
     assert nas in pool.children[0].children
     assert nas.parent == pool.children[0]
-    assert nas.name == 'NAS'
+    assert nas.name == NAS.name
     assert nas.terminal == True
     assert len(nas.children)  == 11
     assert hasattr(nas, 'id')
 
 def test_nas_create1(pool_nodes):
-    pool, _ = pool_nodes
+    pool, _, _ = pool_nodes
     pool = pool()
 
     assert len(pool.children) == 1
     assert pool.children[0].parent == pool
-    assert pool.children[0].name == 'NAS'
+    assert pool.children[0].name == NAS.name
     assert pool.children[0].terminal == False
     assert len(pool.children[0].children) == 0
     assert not hasattr(pool.children[0], 'id')
@@ -40,7 +49,7 @@ def test_nas_create1(pool_nodes):
     # check that creation doesn't break the parent object
     assert len(pool.children) == 1
     assert pool.children[0].parent == pool
-    assert pool.children[0].name == 'NAS'
+    assert pool.children[0].name == NAS.name
 
     # check that it's really created
     assert len(NAS.list()) == 1
@@ -63,7 +72,7 @@ def test_nas_create1(pool_nodes):
     pool.add(Node(NAS.name, terminal=False))
 
 def test_nas_create2(pool_nodes):
-    pool1, pool2 = pool_nodes
+    pool1, pool2, _ = pool_nodes
     pool1, pool2 = pool1(), pool2()
 
     p1_nas1 = NAS.create(pool1)
@@ -95,7 +104,7 @@ def test_nas_modify(pool_nodes):
     pass
 
 def test_nas_delete_on_one_pool(pool_nodes):
-    pool, _ = pool_nodes
+    pool, _, _ = pool_nodes
     pool = pool()
 
     nas = weakref.ref(pool.children[0])
@@ -126,7 +135,7 @@ def test_nas_delete_on_one_pool(pool_nodes):
     assert len(pool.children[0].children) == 0
 
 def test_nas_delete_on_different_pools(pool_nodes):
-    pool1, pool2 = pool_nodes
+    pool1, pool2, _ = pool_nodes
     pool1, pool2 = pool1(), pool2()
 
     nas1 = NAS.create(pool1)
@@ -165,7 +174,7 @@ def test_nas_delete_on_different_pools(pool_nodes):
     assert len(pool2.children[0].children) == 0
 
 def test_nas_delete_pool(pool_nodes):
-    pool1, pool2 = pool_nodes
+    pool1, pool2, _ = pool_nodes
 
     nas1 = NAS.create(pool1)
     nas2 = NAS.create(pool1)

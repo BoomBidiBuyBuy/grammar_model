@@ -2,13 +2,20 @@ from core.parser import *
 import pytest
 import os
 
-@pytest.fixture
-def system_node(scope="module"):
+@pytest.fixture(scope="module")
+def system_node(request):
     path = os.path.dirname(__file__) + "\..\model\\"
     globals().update(load_model_file(path + "NTP.json"))
 
     system_node = Node(name="*", terminal=False)
     system_node.add(Node(NTP.name, terminal=False))
+
+    def finalizer():
+        while len(NTP.list()):
+            NTP.delete(NTP.list()[0])
+
+    request.addfinalizer(finalizer)
+
     return system_node
 
 def test_ntp_create(system_node):
@@ -16,7 +23,7 @@ def test_ntp_create(system_node):
 
     assert len(root_node.children) == 1
     assert root_node.children[0].parent == root_node
-    assert root_node.children[0].name == 'NTP'
+    assert root_node.children[0].name == NTP.name
     assert root_node.children[0].terminal == False
     assert len(root_node.children[0].children) == 0
     assert not hasattr(root_node.children[0], 'id')
@@ -26,7 +33,7 @@ def test_ntp_create(system_node):
     assert len(root_node.children) == 1
     assert ntp() == root_node.children[0]
     assert ntp().parent == root_node
-    assert ntp().name == 'NTP'
+    assert ntp().name == NTP.name
     assert ntp().terminal == True
     assert len(ntp().children) == 0
     assert hasattr(ntp(), 'id')
@@ -73,7 +80,7 @@ def test_ntp_delete(system_node):
     assert ntp() == None
     assert len(root_node.children) == 1
     assert root_node.children[0].parent == root_node
-    assert root_node.children[0].name == 'NTP'
+    assert root_node.children[0].name == NTP.name
     assert root_node.children[0].terminal == False
     assert len(root_node.children[0].children) == 0
     assert not hasattr(root_node.children[0], 'id')

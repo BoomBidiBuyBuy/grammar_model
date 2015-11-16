@@ -1,0 +1,77 @@
+{
+  "rules": [
+    		{
+			"name": "Create FI",
+			"type": "FI",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify FI",
+			"type": "FI",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete FI",
+			"type": "FI",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false,
+					"symbol": {
+						"name": "FI",
+						"terminal": true
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "FI",
+					"terminal": false
+				}
+			}
+		}
+  ]
+}

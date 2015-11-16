@@ -1,0 +1,109 @@
+{
+  "rules": [
+    		{
+			"name": "Create NDMP",
+			"type": "NDMP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+                    "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "NDMP",
+                        "terminal": false
+                      }
+                    }
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+                    "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "NDMP",
+                        "terminal": true
+                      }
+                    }
+				}
+			}
+		},
+		{
+			"name": "Modify NDMP",
+			"type": "NDMP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NDMP",
+			"type": "NDMP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NDMP",
+							"terminal": false
+						}
+					}
+				}
+			}
+		}
+  ]
+}
