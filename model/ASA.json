@@ -1,0 +1,109 @@
+{
+  "rules": [
+		{
+			"name": "Create ASA",
+			"type": "ASA",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+                    "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "ASA",
+                        "terminal": false
+                      }
+                    }
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+                    "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "ASA",
+                        "terminal": true
+                      }
+                    }
+				}
+			}
+		},
+		{
+			"name": "Modify ASA",
+			"type": "ASA",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete ASA",
+			"type": "ASA",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "ASA",
+							"terminal": false
+						}
+					}
+				}
+			}
+		}
+  ]
+}

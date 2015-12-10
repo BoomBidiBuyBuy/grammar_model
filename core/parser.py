@@ -1,6 +1,7 @@
 import json
 import weakref
 import gc
+from functools import reduce
 
 UNIQUE_ID = {}
 
@@ -57,8 +58,6 @@ class Node(object):
 
         return result
 
-        #return self.terminal == other.terminal and self.name == other.name
-
     def __ne__(self, other):
         return not self.__eq__(other)
 
@@ -104,6 +103,7 @@ class Rule(object):
         self.left  = Node(json_node = json_rule['left']['symbol'])
         self.right = Node(json_node = json_rule['right']['symbol'])
 
+        self.base = None
         if 'base' in json_rule:
             self.base  = Node(json_node = json_rule['base']['symbol'])
 
@@ -174,7 +174,7 @@ class Rule(object):
             result.append(weakref.ref(node))
 
         for child in node.children:
-            result += self.__find_terminal(child)
+           result += self.__find_terminal(child)
 
         return result
 
@@ -216,6 +216,14 @@ class Rule(object):
     def __ndeep_eq(node1, node2):
         return node1.terminal == node2.terminal and node1.name == node2.name
 
+    @staticmethod
+    def __dfs_by_id(node, node_name, node_id):
+        if node.name == node_name and hasattr(node, 'id') and node.id == node_id:
+            return True
+
+        return reduce(lambda res, child: res | Rule.__dfs_by_id(child, node_name, node_id),
+                        node.children, False)
+
     def apply(self, node):
         if node is None:
             return False
@@ -224,6 +232,7 @@ class Rule(object):
             node = node()
 
         node_id = None
+        node_name = node.name
         if hasattr(node, 'id'):
             node_id = node.id
 
@@ -235,7 +244,7 @@ class Rule(object):
             right_node = self.copy_right()
 
             # merge
-            def merge_diff_rec(left, right, orig):
+            def merge_diff_rec(left, right, orig, passed_node_id, passed_node_name):
                 result = []
 
                 # some nodes are added in rule
@@ -266,9 +275,8 @@ class Rule(object):
                             # find and remove such symbol
                             for inx in range(len(orig.children)):
                                 orig_child = orig.children[inx]
-                                if self.__ndeep_eq(left_child, orig_child) and orig_child.id == node_id:
+                                if self.__ndeep_eq(left_child, orig_child) and orig_child.id == passed_node_id:
                                     orig.children.pop(inx)
-
                                     Rule.__delete_terminal_node(orig_child)
                                     break
                 # if nodes are the same
@@ -282,8 +290,13 @@ class Rule(object):
                         right_child = right.children[right_inx]
                         orig_child  = orig.children[orig_inx]
 
-                        #while left_child != orig_child and orig_child < len(orig.children):
-                        while not Rule.__ndeep_eq(left_child, orig_child) and orig_inx < len(orig.children):
+                        while orig_inx < len(orig.children):
+                            cmp_result = Rule.__ndeep_eq(left_child, orig_child)
+
+                            if (passed_node_id is None and cmp_result) or \
+                                (not passed_node_id is None and cmp_result and Rule.__dfs_by_id(orig_child, passed_node_name, passed_node_id)):
+                                break
+
                             orig_inx += 1
                             orig_child = orig.children[orig_inx]
 
@@ -308,12 +321,17 @@ class Rule(object):
                         right_inx += 1
                         orig_inx += 1
 
+                    # We don't need the id below the objects with pointed name,
+                    # because there is no such nodes and hence there is no such id.
+                    if orig.name == passed_node_name:
+                        passed_node_name, passed_node_id = None, None
+
                     for left_child, right_child, orig_child in zip(left.children, right.children, orig_children):
-                        result.extend(merge_diff_rec(left_child, right_child, orig_child))
+                        result.extend(merge_diff_rec(left_child, right_child, orig_child, passed_node_id, passed_node_name))
 
                 return result
 
-            result = merge_diff_rec(left_node, right_node, node)
+            result = merge_diff_rec(left_node, right_node, node, node_id, node_name)
 
             for n in result:
                 n().handle_id()
