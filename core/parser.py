@@ -34,9 +34,7 @@ class Node(object):
             self.name = other_node.name
             self.terminal = other_node.terminal
             for node in other_node.children:
-                new_node = Node(other_node = node)
-                new_node.parent = self
-                self.children.append(new_node)
+                self.add(Node(other_node = node))
 
         if self.terminal:
             self.id = ''
@@ -61,6 +59,18 @@ class Node(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __lt__(self, other):
+        return (self.name, self.terminal) < (other.name, other.terminal)
+
+    def __le__(self, other):
+        return (self.name, self.terminal) <= (other.name, other.terminal)
+
+    def __gt__(self, other):
+        return (self.name, self.terminal) > (other.name, other.terminal)
+
+    def __ge__(self, other):
+        return (self.name, self.terminal) >= (other.name, other.terminal)
+
     def add(self, node):
         self.children.append(node)
         node.parent = self
@@ -73,15 +83,9 @@ class Node(object):
         if 'symbol' in json_node:
             if type(json_node['symbol']) is list:
                 for symbol in json_node['symbol']:
-                    new_node = Node(json_node = symbol)
-                    new_node.parent = self
-                    self.children.append(new_node)
+                    self.add(Node(json_node = symbol))
             else:
-                new_node = Node(json_node = json_node['symbol'])
-                new_node.parent = self
-                self.children.append(new_node)
-
-        self.children = sorted(self.children, key = lambda n: (n.name, n.terminal))
+                self.add(Node(json_node = json_node['symbol']))
 
     def clear(self):
         def clear_rec(node):
@@ -105,7 +109,11 @@ class Rule(object):
 
         self.base = None
         if 'base' in json_rule:
-            self.base  = Node(json_node = json_rule['base']['symbol'])
+            self.base = Node(json_node = json_rule['base']['symbol'])
+        else:
+            self.base = Node(self.type, True)
+
+        self.context = self.__find_context_nodes()
 
     def get_terminals(self):
         result = set()
@@ -224,6 +232,72 @@ class Rule(object):
         return reduce(lambda res, child: res | Rule.__dfs_by_id(child, node_name, node_id),
                         node.children, False)
 
+
+    def __find_context_nodes(self):
+        singular = self.__find_singular_nodes()
+        required = self.__find_required_nodes()
+
+        context = singular - required
+
+        result = set()
+
+        for name, terminal in context:
+            if name != self.type:
+                result.add((name, terminal))
+
+        return result
+
+    # Find singular nodes, that don't change.
+    # It needs to find context in which rule is applied.
+    def __find_singular_nodes(self):
+        def find(left, right):
+            result = set()
+
+            if Rule.__ndeep_eq(left, right):
+                result.add((left.name, left.terminal))
+
+            left_inx, right_inx = 0, 0
+
+            while left_inx < len(left.children) and \
+                    right_inx < len(right.children):
+
+                left_child, right_child = left.children[left_inx], right.children[right_inx]
+
+                if left_child < right_child:
+                    left_inx += 1
+                    continue
+                elif left_child > right_child:
+                    right_inx += 1
+                    continue
+
+                result = result.union(find(left_child, right_child))
+                left_inx += 1
+                right_inx += 1
+
+            return result
+
+        return find(self.left, self.right)
+
+    def __find_required_nodes(self):
+        def find(left, base):
+            result = set()
+
+            if Rule.__ndeep_eq(left, base):
+                result.add((left.name, left.terminal))
+                return result, True
+
+            for child in left.children:
+                nodes, found = find(child, base)
+
+                if found:
+                    nodes.add((left.name, left.terminal))
+                    return nodes, True
+
+            return set(), False
+
+        res, found = find(self.left, self.base)
+        return res
+
     def apply(self, node):
         if node is None:
             return False
@@ -292,9 +366,12 @@ class Rule(object):
 
                         while orig_inx < len(orig.children):
                             cmp_result = Rule.__ndeep_eq(left_child, orig_child)
+                            dfs_result = Rule.__dfs_by_id(orig_child, passed_node_name, passed_node_id)
+                            in_context = (orig_child.name, orig_child.terminal) in self.context
 
-                            if (passed_node_id is None and cmp_result) or \
-                                (not passed_node_id is None and cmp_result and Rule.__dfs_by_id(orig_child, passed_node_name, passed_node_id)):
+                            if cmp_result and \
+                                    (passed_node_id is None or \
+                                     not passed_node_id is None and (dfs_result or in_context)):
                                 break
 
                             orig_inx += 1

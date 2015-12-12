@@ -1,0 +1,109 @@
+{
+  "rules": [
+    {
+			"name": "Create FTP",
+			"type": "FTP",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify FTP",
+			"type": "FTP",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete FTP",
+			"type": "FTP",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "FTP",
+							"terminal": false
+						}
+					}
+				}
+			}
+		}
+  ]
+}

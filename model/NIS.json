@@ -1,0 +1,121 @@
+{
+  "rules": [
+    		{
+			"name": "Create NIS",
+			"type": "NIS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify NIS",
+			"type": "NIS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "NIS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete NIS",
+			"type": "NIS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "NIS",
+								"terminal": true
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name":  "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": [
+							{
+								"name": "NIS",
+								"terminal": false
+							},
+							{
+								"name": "NFS",
+								"terminal": false
+							}
+						]
+					}
+				}
+			}
+		}
+  ]
+}

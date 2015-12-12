@@ -1,0 +1,109 @@
+{
+  "rules": [
+      {
+			"name": "Create DNS",
+			"type": "DNS",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Modify DNS",
+			"type": "DNS",
+			"method": "modify",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete DNS",
+			"type": "DNS",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "DNS",
+							"terminal": false
+						}
+					}
+				}
+			}
+		}
+  ]
+}

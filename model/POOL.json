@@ -49,10 +49,10 @@
 					"terminal": false,
 					"symbol": {
 						"name": "POOL",
-						"terminal": true,
-						"symbol": {
-							"name": "NAS",
-							"terminal": false
+					  	"terminal": false,
+					  	"symbol": {
+						  "name": "POOL",
+						  "terminal": true
 						}
 					}
 				}
@@ -66,11 +66,7 @@
 						"terminal": false,
 						"symbol": {
 							"name": "POOL",
-							"terminal": true,
-							"symbol": {
-								"name": "NAS",
-								"terminal": false
-							}
+							"terminal": true
 						}
 					}
 				}

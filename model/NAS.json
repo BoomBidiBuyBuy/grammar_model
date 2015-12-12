@@ -67,7 +67,11 @@
 							{
 								"name": "FS",
 								"terminal": false
-							}
+							},
+						    {
+							  	"name": "KERBEROS",
+							  	"terminal": false
+						    }
 						]
 					}
 				}

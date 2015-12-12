@@ -17,7 +17,7 @@ def config(request):
 
     def finalizer():
         while len(ASA.list()):
-            NDMP.delete(ASA.list()[0])
+            ASA.delete(ASA.list()[0])
 
         while len(NAS.list()):
             NAS.delete(NAS.list()[0])
@@ -42,7 +42,7 @@ def test_asa_create(config):
 
     assert len(ASA.list()) == 1
     assert asa().name == ASA.name
-    assert asa().terminal == True
+    assert asa().terminal
     assert hasattr(asa(), 'id')
     assert asa().parent == nas()
     assert is_asa_existed(nas)
@@ -67,9 +67,59 @@ def test_asa_modify(config):
     assert is_asa_existed(nas)
     assert len(ASA.list()) == 1
     assert asa().name == ASA.name
-    assert asa().terminal == True
+    assert asa().terminal
     assert hasattr(asa(), 'id')
     assert asa().parent == nas()
 
     # tear down
     ASA.delete(asa)
+
+def test_asa_delete(config):
+    nas1, pool, _ = config
+    nas2 = NAS.create(pool)
+    nas3 = NAS.create(pool)
+
+    asa1 = ASA.create(nas1)
+
+    assert asa1().parent == nas1()
+    assert is_asa_existed(nas1)
+    assert not is_asa_existed(nas2)
+    assert not is_asa_existed(nas3)
+    assert len(ASA.list()) == 1
+
+    asa3 = ASA.create(nas3)
+
+    assert asa3().parent == nas3()
+    assert is_asa_existed(nas1)
+    assert not is_asa_existed(nas2)
+    assert is_asa_existed(nas3)
+    assert len(ASA.list()) == 2
+
+    asa2 = ASA.create(nas2)
+
+    assert asa2().parent == nas2()
+    assert is_asa_existed(nas1)
+    assert is_asa_existed(nas2)
+    assert is_asa_existed(nas3)
+    assert len(ASA.list()) == 3
+
+    ASA.delete(asa1)
+
+    assert asa1() == None
+    assert not is_asa_existed(nas1)
+    assert len(ASA.list()) == 2
+
+    asa1 = ASA.create(nas1)
+
+    assert asa1().parent == nas1()
+    assert is_asa_existed(nas1)
+    assert len(ASA.list()) == 3
+
+    ASA.delete(asa1)
+    ASA.delete(asa2)
+    ASA.delete(asa3)
+
+    assert asa1() == None
+    assert asa2() == None
+    assert asa3() == None
+    assert len(ASA.list()) == 0
