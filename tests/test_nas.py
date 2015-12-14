@@ -30,7 +30,7 @@ def check_nas(nas, pool):
     assert nas.parent == pool.children[0]
     assert nas.name == NAS.name
     assert nas.terminal == True
-    assert len(nas.children)  == 11
+    assert len(nas.children)  == 12
     assert hasattr(nas, 'id')
 
 def test_nas_create1(pool_nodes):

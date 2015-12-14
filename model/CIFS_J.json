@@ -1,0 +1,307 @@
+{
+  "rules": [
+		{
+			"name": "Create CIFS_J",
+			"type": "CIFS_J",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS",
+												"terminal": false
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			}
+		},
+        {
+			"name": "Modify CIFS_J",
+			"method": "modify",
+			"type": "CIFS_J",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			}
+		},
+        {
+			"name": "Delete CIFS_J",
+			"type": "CIFS_J",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS_J",
+												"terminal": true
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "*",
+					"terminal": false,
+					"symbol": [
+						{
+							"name": "POOL",
+							"terminal": false,
+							"symbol": {
+								"name": "POOL",
+								"terminal": true,
+								"symbol": {
+									"name": "NAS",
+									"terminal": false,
+									"symbol": {
+										"name": "NAS",
+										"terminal": true,
+										"symbol": [
+											{
+												"name": "CIFS",
+												"terminal": false
+											},
+											{
+												"name": "FI",
+												"terminal": false,
+												"symbol": {
+													"name": "FI",
+													"terminal": true
+												}
+											},
+											{
+												"name": "DNS",
+												"terminal": true
+											}
+										]
+									}
+								}
+							}
+						},
+						{
+							"name": "NTP",
+							"terminal": true
+						}
+					]
+				}
+			}
+		}
+  ]
+}
