@@ -1,17 +1,15 @@
 import json
 import weakref
 import gc
+from collections import defaultdict
 from functools import reduce
 
-UNIQUE_ID = {}
+UNIQUE_ID = defaultdict(lambda:0)
 
-OBJECTS = {}
+OBJECTS = defaultdict(lambda:{})
 
 # generator of unique id for objects
 def id_generator(name):
-    if not name in UNIQUE_ID:
-        UNIQUE_ID[name] = 0
-
     UNIQUE_ID[name] += 1
 
     return str(name + '_' + str(UNIQUE_ID[name]))
@@ -22,7 +20,7 @@ class Node(object):
         self.terminal = False
         self.children = []
         self.parent = None
-        
+
         if not json_node is None:
             self.__init_from_json(json_node)
         if not name is None:
@@ -104,14 +102,14 @@ class Rule(object):
         self.name   = json_rule['name']
         self.type   = json_rule['type']
         self.method = json_rule['method']
-        self.left  = Node(json_node = json_rule['left']['symbol'])
-        self.right = Node(json_node = json_rule['right']['symbol'])
+        self.left  = Node( json_node = json_rule['left']['symbol'])
+        self.right = Node( json_node = json_rule['right']['symbol'])
 
         self.base = None
         if 'base' in json_rule:
-            self.base = Node(json_node = json_rule['base']['symbol'])
+            self.base = Node( json_node = json_rule['base']['symbol'])
         else:
-            self.base = Node(self.type, True)
+            self.base = Node( name = self.type, terminal = True)
 
         self.context = self.__find_context_nodes()
 
@@ -231,7 +229,6 @@ class Rule(object):
 
         return reduce(lambda res, child: res | Rule.__dfs_by_id(child, node_name, node_id),
                         node.children, False)
-
 
     def __find_context_nodes(self):
         singular = self.__find_singular_nodes()
@@ -412,10 +409,6 @@ class Rule(object):
 
             for n in result:
                 n().handle_id()
-
-                # Add to global objects
-                if not n().name in OBJECTS:
-                    OBJECTS[n().name] = {}
 
                 OBJECTS[n().name][n().id] = n
 

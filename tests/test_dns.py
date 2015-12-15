@@ -2,7 +2,7 @@ from core.parser import *
 import pytest
 import os
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def config(request):
     path = os.path.dirname(__file__) + "\..\model\\"
     globals().update(load_model_file(path + "POOL.json"))
@@ -51,13 +51,9 @@ def test_dns_create(config):
 
     assert len(DNS.list()) == 1
 
-    # tear down
-    DNS.delete(dns)
-
 def test_dns_modify(config):
     nas = config[0]
 
-    assert len(DNS.list()) == 0
     assert not is_dns_existed(nas)
 
     dns = DNS.create(nas)
@@ -70,9 +66,6 @@ def test_dns_modify(config):
     assert dns().terminal
     assert hasattr(dns(), 'id')
     assert dns().parent == nas()
-
-    # tear down
-    DNS.delete(dns)
 
 def test_dns_delete(config):
     nas1, pool, _ = config
@@ -105,7 +98,7 @@ def test_dns_delete(config):
 
     DNS.delete(dns1)
 
-    assert dns1() == None
+    assert dns1() is None
     assert not is_dns_existed(nas1)
     assert len(DNS.list()) == 2
 
@@ -119,7 +112,7 @@ def test_dns_delete(config):
     DNS.delete(dns2)
     DNS.delete(dns3)
 
-    assert dns1() == None
-    assert dns2() == None
-    assert dns3() == None
+    assert dns1() is None
+    assert dns2() is None
+    assert dns3() is None
     assert len(DNS.list()) == 0

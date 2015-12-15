@@ -1,7 +1,7 @@
 {
   "rules": [
 		{
-			"name": "Create CIFS_J",
+			"name": "Create CIFS",
 			"type": "CIFS_J",
 			"method": "create",
 			"base": {
@@ -110,7 +110,7 @@
 			}
 		},
         {
-			"name": "Modify CIFS_J",
+			"name": "Modify CIFS",
 			"method": "modify",
 			"type": "CIFS_J",
 			"left": {
@@ -207,7 +207,7 @@
 			}
 		},
         {
-			"name": "Delete CIFS_J",
+			"name": "Delete CIFS",
 			"type": "CIFS_J",
 			"method": "delete",
 			"left": {
