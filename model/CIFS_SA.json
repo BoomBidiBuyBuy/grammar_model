@@ -1,0 +1,109 @@
+{
+  "rules": [
+		{
+			"name": "Create CIFS",
+			"type": "CIFS_SA",
+			"method": "create",
+			"base": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": true
+				}
+			},
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS",
+							"terminal": false
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+            "name": "Modify CIFS",
+			"method": "modify",
+			"type": "CIFS_SA",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			}
+		},
+		{
+			"name": "Delete CIFS",
+			"type": "CIFS_SA",
+			"method": "delete",
+			"left": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS_SA",
+							"terminal": true
+						}
+					}
+				}
+			},
+			"right": {
+				"symbol": {
+					"name": "NAS",
+					"terminal": false,
+					"symbol": {
+						"name": "NAS",
+						"terminal": true,
+						"symbol": {
+							"name": "CIFS",
+							"terminal": false
+						}
+					}
+				}
+			}
+		}
+  ]
+}

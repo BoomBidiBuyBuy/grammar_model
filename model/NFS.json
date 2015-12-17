@@ -1,0 +1,115 @@
+{
+  "rules": [
+    {
+      "name": "Create NFS",
+      "type": "NFS",
+      "method": "create",
+      "base": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": true
+        }
+      },
+      "left": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": false
+            }
+          }
+        }
+      },
+      "right": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Modify NFS",
+      "method": "modify",
+      "type": "NFS",
+      "left": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": true
+            }
+          }
+        }
+      },
+      "right": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Delete NFS",
+      "type": "NFS",
+      "method": "delete",
+      "base": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": true
+        }
+      },
+      "left": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": true
+            }
+          }
+        }
+      },
+      "right": {
+        "symbol": {
+          "name": "NAS",
+          "terminal": false,
+          "symbol": {
+            "name": "NAS",
+            "terminal": true,
+            "symbol": {
+              "name": "NFS",
+              "terminal": false
+            }
+          }
+        }
+      }
+    }
+  ]
+}
