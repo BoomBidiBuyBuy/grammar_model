@@ -2,7 +2,7 @@
   "rules": [
     {
       "name": "Create NFS",
-      "type": "NFS_WS",
+      "type": "NFS_CS",
       "method": "create",
       "base": {
         "symbol": {
@@ -23,7 +23,7 @@
                 "terminal": false
               },
               {
-                "name": "CIFS_J",
+                "name": "KERBEROS",
                 "terminal": true
               },
               {
@@ -44,11 +44,11 @@
             "terminal": true,
             "symbol": [
               {
-                "name": "NFS_WS",
+                "name": "NFS_CS",
                 "terminal": true
               },
               {
-                "name": "CIFS_J",
+                "name": "KERBEROS",
                 "terminal": true
               },
               {
@@ -63,7 +63,7 @@
     {
       "name": "Modify NFS",
       "method": "modify",
-      "type": "NFS_WS",
+      "type": "NFS_CS",
       "left": {
         "symbol": {
           "name": "NAS",
@@ -72,7 +72,7 @@
             "name": "NAS",
             "terminal": true,
             "symbol": {
-              "name": "NFS_WS",
+              "name": "NFS_CS",
               "terminal": true
             }
           }
@@ -86,7 +86,7 @@
             "name": "NAS",
             "terminal": true,
             "symbol": {
-              "name": "NFS_WS",
+              "name": "NFS_CS",
               "terminal": true
             }
           }
@@ -95,7 +95,7 @@
     },
     {
       "name": "Delete NFS",
-      "type": "NFS_WS",
+      "type": "NFS_CS",
       "method": "delete",
       "base": {
         "symbol": {
@@ -112,11 +112,11 @@
             "terminal": true,
             "symbol": [
               {
-                "name": "NFS_WS",
+                "name": "NFS_CS",
                 "terminal": true
               },
               {
-                "name": "CIFS_J",
+                "name": "KERBEROS",
                 "terminal": true
               },
               {
@@ -140,7 +140,7 @@
                 "terminal": false
               },
               {
-                "name": "CIFS_J",
+                "name": "KERBEROS",
                 "terminal": true
               },
               {

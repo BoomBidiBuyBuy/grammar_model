@@ -1,17 +1,9 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="function")
-def config(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "POOL.json"))
-    globals().update(load_model_file(path + "NAS.json"))
-    globals().update(load_model_file(path + "FI.json"))
-    globals().update(load_model_file(path + "DNS.json"))
-    globals().update(load_model_file(path + "NTP.json"))
-    globals().update(load_model_file(path + "CIFS_J.json"))
-    globals().update(load_model_file(path + "CIFS_SA.json"))
+@pytest.yield_fixture(scope="function")
+def config(pool_type, nas_type, fi_type, dns_type, ntp_type, cifs_j_type, cifs_sa_type):
+    [globals().update(obj) for obj in [pool_type, nas_type, fi_type, dns_type, ntp_type, cifs_j_type, cifs_sa_type]]
 
     system_node = Node(name="*", terminal=False)
     system_node.add(Node(POOL.name, terminal=False))
@@ -20,16 +12,14 @@ def config(request):
     pool = POOL.create(system_node)
     nas = NAS.create(pool)
 
-    def finalizer():
+    try:
+        yield [nas, pool, system_node]
+    finally:
         while len(NTP.list()):
             NTP.delete(NTP.list()[0])
 
         while len(POOL.list()):
             POOL.delete(POOL.list()[0])
-
-    request.addfinalizer(finalizer)
-
-    return [nas, pool, system_node]
 
 def is_cifs_existed(nas):
     return len([child for child in nas().children if child.name == 'CIFS' and not child.terminal]) == 0
