@@ -30,7 +30,6 @@
                 "name": "NIS",
                 "terminal": true
               }
-
             ]
           }
         }
@@ -97,12 +96,6 @@
       "name": "Delete NFS",
       "type": "NFS_WS",
       "method": "delete",
-      "base": {
-        "symbol": {
-          "name": "NAS",
-          "terminal": true
-        }
-      },
       "left": {
         "symbol": {
           "name": "NAS",

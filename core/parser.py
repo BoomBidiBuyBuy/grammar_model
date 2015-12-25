@@ -44,6 +44,8 @@ class Node(object):
             del self.id
 
     def __eq__(self, other):
+        if type(other) is weakref.ReferenceType:
+            other = other()
 
         result = self.terminal == other.terminal
 
