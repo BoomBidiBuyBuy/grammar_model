@@ -4,6 +4,7 @@
 			"name": "Create DNS",
 			"type": "DNS",
 			"method": "create",
+			"time": 10.2970360909,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify DNS",
 			"type": "DNS",
 			"method": "modify",
+		  	"time": 56.9876571,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete DNS",
 			"type": "DNS",
 			"method": "delete",
+		  	"time": 5.56490281818,
 			"left": {
 				"symbol": {
 					"name": "NAS",

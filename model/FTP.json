@@ -4,6 +4,7 @@
 			"name": "Create FTP",
 			"type": "FTP",
 			"method": "create",
+	  		"time": 5.9076713,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify FTP",
 			"type": "FTP",
 			"method": "modify",
+		  	"time": 8.1583078,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete FTP",
 			"type": "FTP",
 			"method": "delete",
+		  	"time": 2.7449327,
 			"left": {
 				"symbol": {
 					"name": "NAS",

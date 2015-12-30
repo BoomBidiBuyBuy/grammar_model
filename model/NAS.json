@@ -4,6 +4,7 @@
 			"name": "Create NAS",
 			"type": "NAS",
 			"method": "create",
+		  	"time": 45.8608738182,
 			"base": {
 				"symbol": {
 					"name": "POOL",
@@ -81,6 +82,7 @@
 			"name": "Modify NAS",
 			"type": "NAS",
 			"method": "modify",
+		  	"time": 31.4643664,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -106,6 +108,7 @@
 			"name": "Delete NAS",
 			"type": "NAS",
 			"method": "delete",
+		  	"time": 21.6183112,
 			"left": {
 				"symbol": {
 					"name": "NAS",

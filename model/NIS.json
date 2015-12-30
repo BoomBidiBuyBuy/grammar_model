@@ -1,9 +1,10 @@
 {
   "rules": [
-    		{
+		{
 			"name": "Create NIS",
 			"type": "NIS",
 			"method": "create",
+		  	"time": 38.0475981,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify NIS",
 			"type": "NIS",
 			"method": "modify",
+		  	"time": 29.045458,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete NIS",
 			"type": "NIS",
 			"method": "delete",
+		  	"time": 26.2160734,
 			"left": {
 				"symbol": {
 					"name": "NAS",

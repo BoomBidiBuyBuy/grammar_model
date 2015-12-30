@@ -1,9 +1,10 @@
 {
   "rules": [
-    		{
+		{
 			"name": "Create NDMP",
 			"type": "NDMP",
 			"method": "create",
+			"time": 4.2598081,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify NDMP",
 			"type": "NDMP",
 			"method": "modify",
+		  	"time": 6.3617403,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete NDMP",
 			"type": "NDMP",
 			"method": "delete",
+		  	"time": 3.6274089,
 			"left": {
 				"symbol": {
 					"name": "NAS",

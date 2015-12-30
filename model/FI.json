@@ -4,6 +4,7 @@
 			"name": "Create FI",
 			"type": "FI",
 			"method": "create",
+			"time": 33.7765972727,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -31,6 +32,7 @@
 			"name": "Modify FI",
 			"type": "FI",
 			"method": "modify",
+		    "time": 49.3689777273,
 			"left": {
 				"symbol": {
 					"name": "FI",
@@ -56,6 +58,7 @@
 			"name": "Delete FI",
 			"type": "FI",
 			"method": "delete",
+		    "time": 17.8568206364,
 			"left": {
 				"symbol": {
 					"name": "FI",

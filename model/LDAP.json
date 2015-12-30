@@ -1,9 +1,10 @@
 {
   "rules": [
-    		{
+    	{
 			"name": "Create LDAP",
 			"type": "LDAP",
 			"method": "create",
+			"time": 95.95813,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -63,6 +64,7 @@
 			"name": "Modify LDAP",
 			"type": "LDAP",
 			"method": "modify",
+		    "time": 56.9876571,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -116,6 +118,7 @@
 			"name": "Delete LDAP",
 			"type": "LDAP",
 			"method": "delete",
+		    "time": 19.0280406,
 			"left": {
 				"symbol": {
 					"name": "NAS",

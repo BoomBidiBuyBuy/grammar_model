@@ -1,9 +1,10 @@
 {
   "rules": [
-			{
+		{
 			"name": "Create KERBEROS",
 			"type": "KERBEROS",
 			"method": "create",
+			"time": 4.2142908,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify KERBEROS",
 			"type": "KERBEROS",
 			"method": "modify",
+		  	"time": 0.0,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete KERBEROS",
 			"type": "KERBEROS",
 			"method": "delete",
+		   	"time": 1.530909875,
 			"left": {
 				"symbol": {
 					"name": "NAS",

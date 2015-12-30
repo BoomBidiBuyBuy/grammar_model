@@ -3,6 +3,7 @@ import weakref
 import gc
 from collections import defaultdict
 from functools import reduce
+from .timer import Timer
 
 UNIQUE_ID = defaultdict(lambda:0)
 
@@ -104,6 +105,12 @@ class Rule(object):
         self.name   = json_rule['name']
         self.type   = json_rule['type']
         self.method = json_rule['method']
+
+        if 'time' in json_rule:
+            self.time = json_rule['time']
+        else:
+            self.time = 0.0
+
         self.left  = Node( json_node = json_rule['left']['symbol'])
         self.right = Node( json_node = json_rule['right']['symbol'])
 
@@ -297,7 +304,7 @@ class Rule(object):
         res, found = find(self.left, self.base)
         return res
 
-    def apply(self, node):
+    def apply(self, node, **kwargs):
         if node is None:
             return False
 
@@ -312,6 +319,8 @@ class Rule(object):
         node = self.__find_left_base(node)
 
         if self.is_applicable(node):
+            Timer.add(self.time)
+
             # create new
             left_node = self.copy_left()
             right_node = self.copy_right()
@@ -357,6 +366,10 @@ class Rule(object):
                     orig_children = []
 
                     left_inx, right_inx, orig_inx = 0, 0, 0
+
+                    # modify case
+                    if len(left.children) == len(right.children) == 0:
+                        orig.__dict__.update(**kwargs)
 
                     while left_inx < len(left.children):
                         left_child  = left.children[left_inx]
@@ -415,6 +428,7 @@ class Rule(object):
                 OBJECTS[n().name][n().id] = n
 
             if len(result) == 1:
+                result[0]().__dict__.update(**kwargs)
                 return result[0]
             else:
                 return result

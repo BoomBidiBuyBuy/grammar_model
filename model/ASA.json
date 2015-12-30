@@ -4,6 +4,7 @@
 			"name": "Create ASA",
 			"type": "ASA",
 			"method": "create",
+		  	"time": 4.181173,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -43,6 +44,7 @@
 			"name": "Modify ASA",
 			"type": "ASA",
 			"method": "modify",
+		  	"time": 6.44036227273,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -76,6 +78,7 @@
 			"name": "Delete ASA",
 			"type": "ASA",
 			"method": "delete",
+		  	"time": 2.67883445455,
 			"left": {
 				"symbol": {
 					"name": "NAS",

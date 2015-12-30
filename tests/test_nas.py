@@ -207,5 +207,3 @@ def test_nas_delete_pool(pool_nodes):
     assert pool2() is None
     assert nas4() is None
     assert nas5() is None
-
-
