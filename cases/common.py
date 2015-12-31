@@ -18,15 +18,8 @@ def getPool():
     return POOL.create(SYSTEM)
 
 def getNasServer(**kwargs):
-    for nas in NAS.list():
-        found = True
-        for key, value in kwargs.items():
-            if not hasattr(nas(), key) or getattr(nas(), key) != value:
-                found = False
-                break
-
-        if found:
-            return nas
+    for nas in NAS.list(**kwargs):
+        return nas
 
     return NAS.create(getPool(), **kwargs)
 
@@ -42,7 +35,8 @@ def deleteNasInstances(nas, types):
 
 def getSingleObject(nas, type):
     for object in type.list():
-        return object
+        if object().parent == nas():
+            return object
 
     return type.create(nas)
 
@@ -66,3 +60,30 @@ def getLdap(nas):
 
 def getKerberos(nas):
     return getSingleObject(nas, KERBEROS)
+
+def getInterface(nas):
+    for fi in FI.list():
+        if fi().parent.parent == nas():
+            return fi
+
+    return FI.create(nas)
+
+def getCifsServer(nas):
+    for cifs in CIFS_J.list():
+        if cifs().parent == nas():
+            return cifs
+
+    for cifs in CIFS_SA.list():
+        if cifs().parent == nas():
+            CIFS_SA.delete(cifs)
+            return CIFS_J.create(nas)
+
+    return CIFS_J.create(nas)
+
+def getNfs(nas):
+    for nfs in NFS_CS.list() + NFS_WS.list() + NFS.list():
+        if nfs().parent == nas():
+            return nfs
+
+    return NFS.create(nas)
+

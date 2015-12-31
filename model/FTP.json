@@ -1,8 +1,13 @@
 {
+  "type": "FTP",
   "rules": [
-    {
+		{
+		 	"name": "List FTP",
+		  	"method": "list",
+		  	"time": 0.1979
+		},
+    	{
 			"name": "Create FTP",
-			"type": "FTP",
 			"method": "create",
 	  		"time": 5.9076713,
 			"base": {
@@ -42,7 +47,6 @@
 		},
 		{
 			"name": "Modify FTP",
-			"type": "FTP",
 			"method": "modify",
 		  	"time": 8.1583078,
 			"left": {
@@ -76,7 +80,6 @@
 		},
 		{
 			"name": "Delete FTP",
-			"type": "FTP",
 			"method": "delete",
 		  	"time": 2.7449327,
 			"left": {

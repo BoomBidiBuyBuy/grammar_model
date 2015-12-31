@@ -1,8 +1,12 @@
 {
+  	"type": "NTP",
 	"rules": [
-			{
+	  	{
+		  	"name": "List NTP",
+		  	"method": "list"
+		},
+	  	{
 			"name": "Create NTP",
-			"type": "NTP",
 			"method": "create",
 			"base": {
 				"symbol": {
@@ -33,7 +37,6 @@
 		},
 		{
 			"name": "Modify NTP",
-			"type": "NTP",
 			"method": "modify",
 			"left": {
 				"symbol": {
@@ -58,7 +61,6 @@
 		},
 		{
 			"name": "Delete NTP",
-			"type": "NTP",
 			"method": "delete",
 			"left": {
 				"symbol": {

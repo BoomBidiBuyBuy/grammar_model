@@ -1,8 +1,13 @@
 {
+  "type": "KERBEROS",
   "rules": [
 		{
+		  	"name": "List KERBEROS",
+		  	"method": "list",
+		  	"time": 0.369454545455
+		},
+		{
 			"name": "Create KERBEROS",
-			"type": "KERBEROS",
 			"method": "create",
 			"time": 4.2142908,
 			"base": {
@@ -42,7 +47,6 @@
 		},
     	{
 			"name": "Modify KERBEROS",
-			"type": "KERBEROS",
 			"method": "modify",
 		  	"time": 0.0,
 			"left": {
@@ -76,7 +80,6 @@
 		},
 		{
 			"name": "Delete KERBEROS",
-			"type": "KERBEROS",
 			"method": "delete",
 		   	"time": 1.530909875,
 			"left": {

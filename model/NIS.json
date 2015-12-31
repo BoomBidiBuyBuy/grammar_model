@@ -1,8 +1,13 @@
 {
+  "type" : "NIS",
   "rules": [
 		{
+		  	"name": "List NIS",
+		  	"method": "list",
+		  	"time": 0.410181818182
+		},
+		{
 			"name": "Create NIS",
-			"type": "NIS",
 			"method": "create",
 		  	"time": 38.0475981,
 			"base": {
@@ -42,7 +47,6 @@
 		},
 		{
 			"name": "Modify NIS",
-			"type": "NIS",
 			"method": "modify",
 		  	"time": 29.045458,
 			"left": {
@@ -76,7 +80,6 @@
 		},
 		{
 			"name": "Delete NIS",
-			"type": "NIS",
 			"method": "delete",
 		  	"time": 26.2160734,
 			"left": {

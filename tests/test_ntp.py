@@ -1,22 +1,25 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="module")
-def system_node(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "NTP.json"))
+@pytest.yield_fixture(scope="function")
+def system_node(ntp_type):
+    globals().update(ntp_type)
 
     system_node = Node(name="*", terminal=False)
     system_node.add(Node(NTP.name, terminal=False))
 
-    def finalizer():
+    try:
+        yield system_node
+    finally:
         while len(NTP.list()):
             NTP.delete(NTP.list()[0])
 
-    request.addfinalizer(finalizer)
+def test_ntp_list(system_node):
+    assert len(NTP.list()) == 0
 
-    return system_node
+    NTP.create(system_node)
+
+    assert len(NTP.list()) == 1
 
 def test_ntp_create(system_node):
     root_node = system_node

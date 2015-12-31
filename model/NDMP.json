@@ -1,8 +1,13 @@
 {
+  "type": "NDMP",
   "rules": [
 		{
+		  	"name": "List NDMP",
+		  	"method": "list",
+		  	"time": 0.512
+		},
+		{
 			"name": "Create NDMP",
-			"type": "NDMP",
 			"method": "create",
 			"time": 4.2598081,
 			"base": {
@@ -42,7 +47,6 @@
 		},
 		{
 			"name": "Modify NDMP",
-			"type": "NDMP",
 			"method": "modify",
 		  	"time": 6.3617403,
 			"left": {
@@ -76,7 +80,6 @@
 		},
 		{
 			"name": "Delete NDMP",
-			"type": "NDMP",
 			"method": "delete",
 		  	"time": 3.6274089,
 			"left": {

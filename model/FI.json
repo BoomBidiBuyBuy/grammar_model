@@ -1,8 +1,13 @@
 {
+  "type": "FI",
   "rules": [
-    		{
+		{
+		  	"name": "List FI",
+		  	"method": "list",
+		  	"time": 0.751181818182
+		},
+		{
 			"name": "Create FI",
-			"type": "FI",
 			"method": "create",
 			"time": 33.7765972727,
 			"base": {
@@ -30,7 +35,6 @@
 		},
 		{
 			"name": "Modify FI",
-			"type": "FI",
 			"method": "modify",
 		    "time": 49.3689777273,
 			"left": {
@@ -56,7 +60,6 @@
 		},
 		{
 			"name": "Delete FI",
-			"type": "FI",
 			"method": "delete",
 		    "time": 17.8568206364,
 			"left": {

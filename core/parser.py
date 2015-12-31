@@ -106,13 +106,21 @@ class Rule(object):
         self.type   = json_rule['type']
         self.method = json_rule['method']
 
+        self.time = 0.0
         if 'time' in json_rule:
             self.time = json_rule['time']
-        else:
-            self.time = 0.0
 
-        self.left  = Node( json_node = json_rule['left']['symbol'])
-        self.right = Node( json_node = json_rule['right']['symbol'])
+        self.error_time = 0.0
+        if 'error_time' in json_rule:
+            self.error_time = json_rule['error_time']
+
+        self.left = None
+        if 'left' in json_rule:
+            self.left  = Node( json_node = json_rule['left']['symbol'])
+
+        self.right = None
+        if 'right' in json_rule:
+            self.right = Node( json_node = json_rule['right']['symbol'])
 
         self.base = None
         if 'base' in json_rule:
@@ -120,7 +128,9 @@ class Rule(object):
         else:
             self.base = Node( name = self.type, terminal = True)
 
-        self.context = self.__find_context_nodes()
+        self.context = None
+        if self.left and self.right:
+            self.context = self.__find_context_nodes()
 
     def get_terminals(self):
         result = set()
@@ -158,8 +168,8 @@ class Rule(object):
     def copy_left(self):
         return Node(other_node = self.left)
 
-    def is_applicable(self, node):
-        def check_rec(node1, node2):
+    def is_applicable(self, node, passed_node_name, passed_node_id):
+        def check_rec(node1, node2, passed_node_name, passed_node_id):
             result = Rule.__ndeep_eq(node1, node2)
             result &= len(node1.children) <= len(node2.children)
             
@@ -167,9 +177,18 @@ class Rule(object):
                 for node1_child in node1.children:
                     found = False
                     for node2_child in node2.children:
-                        #if node1_child == node2_child:
-                        if Rule.__ndeep_eq(node1_child, node2_child):
-                            found = check_rec(node1_child, node2_child)
+                        cmp_result = Rule.__ndeep_eq(node1_child, node2_child)
+                        dfs_result = Rule.__dfs_by_id(node2_child, passed_node_name, passed_node_id)
+                        in_context = (node2_child.name, node2_child.terminal) in self.context
+
+                        if cmp_result and \
+                                (passed_node_id is None or \
+                                 not passed_node_id is None and (dfs_result or in_context)):
+
+                            if node2_child.name == passed_node_name:
+                                passed_node_name, passed_node_id = None, None
+
+                            found = check_rec(node1_child, node2_child, passed_node_name, passed_node_id)
 
                             if found:
                                 break
@@ -180,7 +199,7 @@ class Rule(object):
 
             return result
 
-        return check_rec(self.left, node)
+        return check_rec(self.left, node, passed_node_name, passed_node_id)
 
     def __find_terminal(self, node):
         result = []
@@ -304,9 +323,31 @@ class Rule(object):
         res, found = find(self.left, self.base)
         return res
 
-    def apply(self, node, **kwargs):
+    def apply_list(self, **kwargs):
+        Timer.add(self.time)
+        result = []
+
+        for _, value in OBJECTS[self.type].items():
+            if len(kwargs):
+                for filter_key, filter_value in kwargs.items():
+                    if hasattr(value, filter_key) and getattr(value, filter_key) == filter_value:
+                        result.append(value)
+            else:
+                result.append(value)
+
+        return result
+
+    def apply(self, node = None, is_error = False, **kwargs):
+        if self.method == 'list':
+            return self.apply_list(**kwargs)
+
+        if is_error:
+            Timer.add(self.error_time)
+            return None
+        Timer.add(self.time)
+
         if node is None:
-            return False
+            return None
 
         if type(node) is weakref.ReferenceType:
             node = node()
@@ -318,9 +359,7 @@ class Rule(object):
 
         node = self.__find_left_base(node)
 
-        if self.is_applicable(node):
-            Timer.add(self.time)
-
+        if self.is_applicable(node, node_name, node_id):
             # create new
             left_node = self.copy_left()
             right_node = self.copy_right()
@@ -449,30 +488,14 @@ def ClassFactory(name):
 
 def load_model_file(file_path):
     content = json.load(open(file_path, "r"))
-
     rules = []
 
     export_classes = {}
 
-    # list method for each class
-    def list_method(cls):
-        def wrapper(**kwargs):
-            result = []
-
-            for _, value in OBJECTS[cls.name].items():
-
-                if len(kwargs):
-                    for filter_key, filter_value in kwargs.items():
-                        if hasattr(value, filter_key) and getattr(value, filter_key) == filter_value:
-                            result.append(value)
-                else:
-                    result.append(value)
-
-            return result
-
-        return wrapper
+    type = content['type']
 
     for rule in content['rules']:
+        rule.update({'type': type})
         r = Rule(rule)
         rules.append(r)
 
@@ -484,12 +507,9 @@ def load_model_file(file_path):
 
         setattr(cls, r.method, r.apply)
         setattr(cls, 'name', r.type)
-        setattr(cls, 'list', list_method(cls))
 
         # register type to global list of objects
         if not r.type in OBJECTS:
             OBJECTS[r.type] = {}
 
     return export_classes
-
-

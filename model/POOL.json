@@ -1,8 +1,13 @@
 {
+  	"type": "POOL",
 	"rules": [
+	  	{
+		  	"name": "List POOL",
+		  	"method": "list",
+		  	"time": 0.5637
+		},
 		{
 			"name": "Create POOL",
-			"type": "POOL",
 			"method": "create",
 			"base": {
 				"symbol": {
@@ -41,7 +46,6 @@
 		},
 		{
 			"name": "Modify POOL",
-			"type": "POOL",
 			"method": "modify",
 			"left": {
 				"symbol": {
@@ -74,7 +78,6 @@
 		},
 		{
 			"name": "Delete POOL",
-			"type": "POOL",
 			"method": "delete",
 			"left": {
 				"symbol": {

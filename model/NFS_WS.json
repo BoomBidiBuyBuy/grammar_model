@@ -1,8 +1,13 @@
 {
+  "type": "NFS_WS",
   "rules": [
     {
+      "name": "List NFS",
+      "method": "list",
+      "time": 0.280727272727
+    },
+    {
       "name": "Create NFS",
-      "type": "NFS_WS",
       "method": "create",
       "time": 27.896485455,
       "base": {
@@ -63,7 +68,6 @@
     {
       "name": "Modify NFS",
       "method": "modify",
-      "type": "NFS_WS",
       "time": 115.302263,
       "left": {
         "symbol": {
@@ -96,7 +100,6 @@
     },
     {
       "name": "Delete NFS",
-      "type": "NFS_WS",
       "method": "delete",
       "time": 5.18423936364,
       "left": {

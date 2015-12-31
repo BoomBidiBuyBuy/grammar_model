@@ -1,5 +1,11 @@
 {
+  "type": "NFS_CS",
   "rules": [
+    {
+      "name": "List NFS",
+      "method": "list",
+      "time": 0.280727272727
+    },
     {
       "name": "Create NFS",
       "type": "NFS_CS",
