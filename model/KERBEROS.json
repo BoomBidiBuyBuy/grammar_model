@@ -17,31 +17,67 @@
 				}
 			},
 			"left": {
-				"symbol": {
-					"name": "NAS",
-					"terminal": false,
-					"symbol": {
-						"name": "NAS",
+			  	"symbol": {
+				  "name": "*",
+				  "terminal": false,
+				  "symbol": [
+					{
+					  "name": "POOL",
+					  "terminal": false,
+					  "symbol": {
+						"name": "POOL",
 						"terminal": true,
 						"symbol": {
-							"name": "KERBEROS",
-							"terminal": false
+						  "name": "NAS",
+						  "terminal": false,
+						  "symbol": {
+							"name": "NAS",
+							"terminal": true,
+							"symbol": {
+							  "name": "KERBEROS",
+							  "terminal": false
+							}
+						  }
 						}
+					  }
+					},
+					{
+					  	"name": "NTP",
+					  	"terminal": true
 					}
+				  ]
 				}
 			},
 			"right": {
-				"symbol": {
-					"name": "NAS",
-					"terminal": false,
-					"symbol": {
-						"name": "NAS",
+			  	"symbol": {
+				  "name": "*",
+				  "terminal": false,
+				  "symbol": [
+					{
+					  "name": "POOL",
+					  "terminal": false,
+					  "symbol": {
+						"name": "POOL",
 						"terminal": true,
 						"symbol": {
-							"name": "KERBEROS",
-							"terminal": true
+						  "name": "NAS",
+						  "terminal": false,
+						  "symbol": {
+							"name": "NAS",
+							"terminal": true,
+							"symbol": {
+							  "name": "KERBEROS",
+							  "terminal": true
+							}
+						  }
 						}
+					  }
+					},
+					{
+					  "name": "NTP",
+					  "terminal": true
 					}
+				  ]
 				}
 			}
 		},

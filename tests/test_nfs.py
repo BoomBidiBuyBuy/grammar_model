@@ -35,6 +35,7 @@ def is_nfs_existed(nas):
 
 def test_nfs_cs_create(config):
     nas, pool, system = config
+    NTP.create(system)
 
     assert not is_nfs_existed(nas)
 
@@ -103,6 +104,7 @@ def test_nfs_ws_create(config):
 def test_nfs_cs_different_create(config):
     nas1, pool, system = config
     nas2 = NAS.create(pool)
+    NTP.create(system)
 
     KERBEROS.create(nas1)
     KERBEROS.create(nas2)

@@ -1,14 +1,10 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="module")
-def config(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "POOL.json"))
-    globals().update(load_model_file(path + "NAS.json"))
-    globals().update(load_model_file(path + "FI.json"))
-    globals().update(load_model_file(path + "LDAP.json"))
+
+@pytest.yield_fixture(scope="function")
+def config(pool_type, nas_type, fi_type, ldap_type):
+    [globals().update(obj) for obj in [pool_type, nas_type, fi_type, ldap_type]]
 
     system_node = Node(name="*", terminal=False)
     system_node.add(Node(POOL.name, terminal=False))
@@ -16,7 +12,9 @@ def config(request):
     pool = POOL.create(system_node)
     nas = NAS.create(pool)
 
-    def finalizer():
+    try:
+        yield [nas, pool, system_node]
+    finally:
         while len(LDAP.list()):
             LDAP.delete(LDAP.list()[0])
 
@@ -28,10 +26,6 @@ def config(request):
 
         while len(POOL.list()):
             POOL.delete(POOL.list()[0])
-
-    request.addfinalizer(finalizer)
-
-    return [nas, pool, system_node]
 
 def is_ldap_existed(nas):
     return len([child for child in nas().children if child.name == LDAP.name and child.terminal]) > 0
