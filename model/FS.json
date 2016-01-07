@@ -1,0 +1,9 @@
+{
+  "type": "FS",
+  "rules": [
+      {
+          "name": "List FS",
+          "method": "list"
+      }
+  ]
+}

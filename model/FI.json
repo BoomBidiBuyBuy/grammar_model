@@ -4,12 +4,12 @@
 		{
 		  	"name": "List FI",
 		  	"method": "list",
-		  	"time": 0.751181818182
+		  	"time": 0.15
 		},
 		{
 			"name": "Create FI",
 			"method": "create",
-			"time": 33.7765972727,
+			"time": 59.272417,
 			"base": {
 				"symbol": {
 					"name": "NAS",

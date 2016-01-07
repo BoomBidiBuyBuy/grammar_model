@@ -1,0 +1,160 @@
+{
+  "type": "FS_CIFS",
+  "base": "FS",
+  "rules": [
+      {
+          "name": "List FS CIFS",
+          "method": "list",
+          "time": 0.5
+      },
+      {
+          "name": "Create FS CIFS",
+          "method": "create",
+          "time": 0.5,
+          "base": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": true
+              }
+          },
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false
+                          }
+                      ]
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false,
+                              "symbol": {
+                                  "name": "FS",
+                                  "terminal": true,
+                                  "symbol": {
+                                      "name": "SH_CIFS",
+                                      "terminal": false
+                                  }
+                              }
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "name": "Modify FS CIFS",
+          "method": "modify",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "FS",
+                        "terminal": false,
+                        "symbol": {
+                          "name": "FS",
+                          "terminal": true
+                        }
+                      }
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "FS",
+                        "terminal": false,
+                        "symbol": {
+                          "name": "FS",
+                          "terminal": true
+                        }
+                      }
+                  }
+              }
+          }
+      },
+      {
+          "name": "Delete FS CIFS",
+          "method": "delete",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false,
+                              "symbol": {
+                                  "name": "FS",
+                                  "terminal": true
+                              }
+                          }
+                      ]
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false
+                          }
+                      ]
+                  }
+              }
+          }
+      }
+  ]
+}

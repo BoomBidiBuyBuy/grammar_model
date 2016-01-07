@@ -1,22 +1,17 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="module")
+@pytest.yield_fixture(scope="function")
 def system_node(request):
-    path = os.path.dirname(__file__) + "\..\model\POOL.json"
-    globals().update(load_model_file(path))
-
-    root_node = Node(name="*", terminal=False)
-    root_node.add(Node(POOL.name, terminal=False))
-
-    def finalizer():
+    try:
+        node = Node(name="*", terminal=False)
+        node.add(Node(POOL.name, terminal=False))
+        yield node
+    finally:
         while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
+            pool = POOL.list()[0]
+            pool().delete()
 
-    request.addfinalizer(finalizer)
-
-    return root_node
 
 def test_pool_create(system_node):
     root_node = system_node

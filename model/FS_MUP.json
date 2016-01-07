@@ -1,0 +1,182 @@
+{
+  "type": "FS_MUP",
+  "base": "FS",
+  "rules": [
+      {
+          "name": "List FS MUP",
+          "method": "list",
+          "time": 0.5
+      },
+      {
+          "name": "Create FS MUP",
+          "method": "create",
+          "time": 0.5,
+          "base": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": true
+              }
+          },
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "NFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false
+                          }
+                      ]
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "NFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false,
+                              "symbol": {
+                                  "name": "FS",
+                                  "terminal": true,
+                                  "symbol": [
+                                      {
+                                          "name": "SH_NFS",
+                                          "terminal": false
+                                      },
+                                      {
+                                          "name": "SH_CIFS",
+                                          "terminal": false
+                                      }
+                                  ]
+                              }
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "name": "Modify FS MUP",
+          "method": "modify",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "FS",
+                        "terminal": false,
+                        "symbol": {
+                          "name": "FS",
+                          "terminal": true
+                        }
+                      }
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": {
+                        "name": "FS",
+                        "terminal": false,
+                        "symbol": {
+                          "name": "FS",
+                          "terminal": true
+                        }
+                      }
+                  }
+              }
+          }
+      },
+      {
+          "name": "Delete FS MUP",
+          "method": "delete",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "NFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false,
+                              "symbol": {
+                                  "name": "FS",
+                                  "terminal": true
+                              }
+                          }
+                      ]
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "NAS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "NAS",
+                      "terminal": true,
+                      "symbol": [
+                          {
+                              "name": "CIFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "NFS",
+                              "terminal": true
+                          },
+                          {
+                              "name": "FS",
+                              "terminal": false
+                          }
+                      ]
+                  }
+              }
+          }
+      }
+  ]
+}

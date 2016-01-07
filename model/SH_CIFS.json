@@ -1,0 +1,83 @@
+{
+  "type": "SH_CIFS",
+  "rules": [
+      {
+          "name": "List SH CIFS",
+          "method": "list",
+          "time": 0.5
+      },
+      {
+          "name": "Create SH CIFS",
+          "method": "create",
+          "time": 0.5,
+          "base": {
+              "symbol": {
+                  "name": "FS",
+                  "terminal": true
+              }
+          },
+          "left": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_CIFS",
+                      "terminal": true
+                  }
+              }
+          }
+      },
+      {
+          "name": "Modify SH CIFS",
+          "method": "modify",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_CIFS",
+                      "terminal": true
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_CIFS",
+                      "terminal": true
+                  }
+              }
+          }
+      },
+      {
+          "name": "Delete SH CIFS",
+          "method": "delete",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_CIFS",
+                      "terminal": true
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_CIFS",
+                  "terminal": false
+              }
+          }
+      }
+  ]
+}

@@ -1,33 +1,13 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="module")
-def config(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "POOL.json"))
-    globals().update(load_model_file(path + "NAS.json"))
-    globals().update(load_model_file(path + "ASA.json"))
-
-    system_node = Node(name="*", terminal=False)
-    system_node.add(Node(POOL.name, terminal=False))
-
-    pool = POOL.create(system_node)
-    nas = NAS.create(pool)
-
-    def finalizer():
-        while len(ASA.list()):
-            ASA.delete(ASA.list()[0])
-
-        while len(NAS.list()):
-            NAS.delete(NAS.list()[0])
-
-        while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
-
-    request.addfinalizer(finalizer)
-
-    return [nas, pool, system_node]
+@pytest.yield_fixture(scope="function")
+def config(pool, ntp, nas):
+    try:
+        yield [nas, pool, SYSTEM]
+    finally:
+        pool().delete()
+        ntp().delete()
 
 def is_asa_existed(nas):
     return len([child for child in nas().children if child.name == ASA.name and child.terminal]) > 0

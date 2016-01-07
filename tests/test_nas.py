@@ -1,29 +1,14 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-@pytest.fixture(scope="module")
-def pool_nodes(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "POOL.json"))
-    globals().update(load_model_file(path + "NAS.json"))
-
-    system_node = Node(name="*", terminal=False)
-    system_node.add(Node(POOL.name, terminal=False))
-
-    pool1 = POOL.create(system_node)
-    pool2 = POOL.create(system_node)
-
-    def finalizer():
-        while len(NAS.list()):
-            NAS.delete(NAS.list()[0])
-
+@pytest.yield_fixture(scope="function")
+def pool_nodes(pool):
+    try:
+        yield [pool, POOL.create(SYSTEM), SYSTEM]
+    finally:
         while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
-
-    request.addfinalizer(finalizer)
-
-    return (pool1, pool2, system_node)
+            pool = POOL.list()[0]
+            pool().delete()
 
 def check_nas(nas, pool):
     assert nas in pool.children[0].children

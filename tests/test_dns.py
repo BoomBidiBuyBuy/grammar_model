@@ -2,26 +2,11 @@ from model.model_fixtures import *
 import pytest
 
 @pytest.yield_fixture(scope="function")
-def config(pool_type, nas_type, dns_type):
-    [globals().update(obj) for obj in [pool_type, nas_type, dns_type]]
-
-    system_node = Node(name="*", terminal=False)
-    system_node.add(Node(POOL.name, terminal=False))
-
-    pool = POOL.create(system_node)
-    nas = NAS.create(pool)
-
+def config(pool, nas):
     try:
-        yield [nas, pool, system_node]
+        yield [nas, pool, SYSTEM]
     finally:
-        while len(DNS.list()):
-            DNS.delete(DNS.list()[0])
-
-        while len(NAS.list()):
-            NAS.delete(NAS.list()[0])
-
-        while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
+        pool().delete()
 
 def is_dns_existed(nas):
     return len([child for child in nas().children if child.name == DNS.name and child.terminal]) > 0

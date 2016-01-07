@@ -33,12 +33,12 @@ def deleteNasInstances(nas, types):
         for object in objects_for_deletion:
             type.delete(object)
 
-def getSingleObject(nas, type):
-    for object in type.list():
+def getSingleObject(nas, type, **kwargs):
+    for object in type.list(**kwargs):
         if object().parent == nas():
             return object
 
-    return type.create(nas)
+    return type.create(nas, **kwargs)
 
 def getDns(nas):
     return getSingleObject(nas, DNS)
@@ -55,11 +55,11 @@ def getDhsm(nas):
 def getNis(nas):
     return getSingleObject(nas, NIS)
 
-def getLdap(nas):
-    return getSingleObject(nas, LDAP)
+def getLdap(nas, **kwargs):
+    return getSingleObject(nas, LDAP, **kwargs)
 
-def getKerberos(nas):
-    return getSingleObject(nas, KERBEROS)
+def getKerberos(nas, **kwargs):
+    return getSingleObject(nas, KERBEROS, **kwargs)
 
 def getInterface(nas):
     for fi in FI.list():
@@ -79,6 +79,17 @@ def getCifsServer(nas):
             return CIFS_J.create(nas)
 
     return CIFS_J.create(nas)
+
+def getStandaloneCifsServer(nas):
+    for cifs in CIFS_J.list():
+        if cifs().parent == nas():
+            cifs().delete()
+
+    for cifs in CIFS_SA.list():
+        if cifs().parent == nas():
+            return cifs
+
+    return CIFS_SA.create(nas)
 
 def getNfs(nas):
     for nfs in NFS_CS.list() + NFS_WS.list() + NFS.list():

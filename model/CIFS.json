@@ -1,0 +1,10 @@
+{
+  "type": "CIFS",
+  "rules": [
+      {
+          "name": "List CIFS",
+          "method": "list",
+          "time": 0.86
+      }
+  ]
+}

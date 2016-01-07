@@ -3,11 +3,13 @@ import weakref
 import gc
 from collections import defaultdict
 from functools import reduce
-from .timer import Timer
+from core.timer import Timer
 
 UNIQUE_ID = defaultdict(lambda:0)
 
 OBJECTS = defaultdict(lambda:{})
+
+TYPE_RULES = defaultdict(lambda:defaultdict(lambda:None))
 
 # generator of unique id for objects
 def id_generator(name):
@@ -18,6 +20,7 @@ def id_generator(name):
 class Node(object):
     def __init__(self, name = None, terminal = None, json_node = None, other_node = None):
         self.name = ""
+        self.type = None
         self.terminal = False
         self.children = []
         self.parent = None
@@ -37,6 +40,17 @@ class Node(object):
 
         if self.terminal:
             self.id = ''
+
+    def __getattr__(self, item):
+        if item in self.__dict__:
+            return self.__dict__[item]
+        elif item in TYPE_RULES[self.type]:
+            def wrap(*args, **kwargs):
+                return TYPE_RULES[self.type][item].apply(self, *args, **kwargs)
+
+            return wrap
+
+        raise AttributeError
 
     def handle_id(self):
         if self.terminal:
@@ -81,6 +95,9 @@ class Node(object):
         self.name     = json_node['name']
         self.terminal = json_node['terminal']
 
+        if 'type' in json_node:
+            self.type = json_node['type']
+
         if 'symbol' in json_node:
             if type(json_node['symbol']) is list:
                 for symbol in json_node['symbol']:
@@ -102,9 +119,10 @@ class Node(object):
 
 class Rule(object):
     def __init__(self, json_rule):
-        self.name   = json_rule['name']
-        self.type   = json_rule['type']
-        self.method = json_rule['method']
+        self.name       = json_rule['name']
+        self.type       = json_rule['type']
+        self.base_type  = json_rule['base_type']
+        self.method     = json_rule['method']
 
         self.time = 0.0
         if 'time' in json_rule:
@@ -126,7 +144,10 @@ class Rule(object):
         if 'base' in json_rule:
             self.base = Node( json_node = json_rule['base']['symbol'])
         else:
-            self.base = Node( name = self.type, terminal = True)
+            if self.base_type:
+                self.base = Node( name = self.base_type, terminal = True)
+            else:
+                self.base = Node( name = self.type, terminal = True)
 
         self.context = None
         if self.left and self.right:
@@ -233,13 +254,16 @@ class Rule(object):
 
         return node
 
-    @staticmethod
-    def __delete_terminal_node(node):
+    def __delete_terminal_node(self, node):
         if node.terminal:
+            # its a case of diamond inheritance
+            if node.type != node.name:
+                del OBJECTS[node.type][node.id]
+
             del OBJECTS[node.name][node.id]
 
         for child in node.children:
-            Rule.__delete_terminal_node(child)
+            self.__delete_terminal_node(child)
 
         node.children = []
         del node
@@ -248,7 +272,16 @@ class Rule(object):
     # Don't compare id of nodes
     @staticmethod
     def __ndeep_eq(node1, node2):
-        return node1.terminal == node2.terminal and node1.name == node2.name
+        name_type1 = node1.name
+        name_type2 = node2.name
+
+        if node1.type and node2.type:
+            if node1.name != node1.type:
+                name_type1 = node1.type
+            if node2.name != node2.type:
+                name_type2 = node2.type
+
+        return node1.terminal == node2.terminal and name_type1 == name_type2 #node1.name == node2.name
 
     @staticmethod
     def __dfs_by_id(node, node_name, node_id):
@@ -398,7 +431,7 @@ class Rule(object):
                                 orig_child = orig.children[inx]
                                 if self.__ndeep_eq(left_child, orig_child) and orig_child.id == passed_node_id:
                                     orig.children.pop(inx)
-                                    Rule.__delete_terminal_node(orig_child)
+                                    self.__delete_terminal_node(orig_child)
                                     break
                 # if nodes are the same
                 elif len(left.children) == len(right.children):
@@ -433,7 +466,7 @@ class Rule(object):
 
                         if left_child != right_child:
                             orig.children[orig_inx] = None
-                            Rule.__delete_terminal_node(orig_child)
+                            self.__delete_terminal_node(orig_child)
 
                             # substitute the node from right tree
                             orig.children[orig_inx] = right_child
@@ -463,8 +496,12 @@ class Rule(object):
 
             for n in result:
                 n().handle_id()
+                n().type = self.type
 
                 OBJECTS[n().name][n().id] = n
+                # That is a case when diamond inheritance is applied
+                if n().name != n().type:
+                    OBJECTS[n().type][n().id] = n
 
             if len(result) == 1:
                 result[0]().__dict__.update(**kwargs)
@@ -493,9 +530,12 @@ def load_model_file(file_path):
     export_classes = {}
 
     type = content['type']
+    base_type = None
+    if 'base' in content:
+        base_type = content['base']
 
     for rule in content['rules']:
-        rule.update({'type': type})
+        rule.update({'type': type, 'base_type': base_type})
         r = Rule(rule)
         rules.append(r)
 
@@ -508,8 +548,6 @@ def load_model_file(file_path):
         setattr(cls, r.method, r.apply)
         setattr(cls, 'name', r.type)
 
-        # register type to global list of objects
-        if not r.type in OBJECTS:
-            OBJECTS[r.type] = {}
+        TYPE_RULES[type][r.method] = r
 
     return export_classes

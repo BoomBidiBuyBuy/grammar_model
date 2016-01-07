@@ -2,9 +2,7 @@ from model.model_fixtures import *
 import pytest
 
 @pytest.yield_fixture(scope="function")
-def system_node(ntp_type):
-    globals().update(ntp_type)
-
+def system_node():
     system_node = Node(name="*", terminal=False)
     system_node.add(Node(NTP.name, terminal=False))
 

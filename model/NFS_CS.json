@@ -1,5 +1,6 @@
 {
   "type": "NFS_CS",
+  "base": "NFS",
   "rules": [
     {
       "name": "List NFS",
@@ -8,7 +9,6 @@
     },
     {
       "name": "Create NFS",
-      "type": "NFS_CS",
       "method": "create",
       "time": 27.8964585455,
       "base": {
@@ -51,7 +51,7 @@
             "terminal": true,
             "symbol": [
               {
-                "name": "NFS_CS",
+                "name": "NFS",
                 "terminal": true
               },
               {
@@ -70,7 +70,6 @@
     {
       "name": "Modify NFS",
       "method": "modify",
-      "type": "NFS_CS",
       "time": 115.302263,
       "left": {
         "symbol": {
@@ -80,7 +79,7 @@
             "name": "NAS",
             "terminal": true,
             "symbol": {
-              "name": "NFS_CS",
+              "name": "NFS",
               "terminal": true
             }
           }
@@ -94,7 +93,7 @@
             "name": "NAS",
             "terminal": true,
             "symbol": {
-              "name": "NFS_CS",
+              "name": "NFS",
               "terminal": true
             }
           }
@@ -103,15 +102,8 @@
     },
     {
       "name": "Delete NFS",
-      "type": "NFS_CS",
       "method": "delete",
       "time": 5.18423936364,
-      "base": {
-        "symbol": {
-          "name": "NAS",
-          "terminal": true
-        }
-      },
       "left": {
         "symbol": {
           "name": "NAS",
@@ -121,7 +113,7 @@
             "terminal": true,
             "symbol": [
               {
-                "name": "NFS_CS",
+                "name": "NFS",
                 "terminal": true
               },
               {

@@ -1,0 +1,83 @@
+{
+  "type": "SH_NFS",
+  "rules": [
+      {
+          "name": "List SH NFS",
+          "method": "list",
+          "time": 0.5
+      },
+      {
+          "name": "Create SH NFS",
+          "method": "create",
+          "time": 0.5,
+          "base": {
+              "symbol": {
+                  "name": "FS",
+                  "terminal": true
+              }
+          },
+          "left": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_NFS",
+                      "terminal": true
+                  }
+              }
+          }
+      },
+      {
+          "name": "Modify SH NFS",
+          "method": "modify",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_NFS",
+                      "terminal": true
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_NFS",
+                      "terminal": true
+                  }
+              }
+          }
+      },
+      {
+          "name": "Delete SH NFS",
+          "method": "delete",
+          "time": 0.5,
+          "left": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false,
+                  "symbol": {
+                      "name": "SH_NFS",
+                      "terminal": true
+                  }
+              }
+          },
+          "right": {
+              "symbol": {
+                  "name": "SH_NFS",
+                  "terminal": false
+              }
+          }
+      }
+  ]
+}

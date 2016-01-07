@@ -2,31 +2,12 @@ from model.model_fixtures import *
 import pytest
 
 @pytest.yield_fixture(scope="function")
-def config(pool_type, nas_type, kerberos_type, ntp_type):
-    [globals().update(obj) for obj in [pool_type, nas_type, kerberos_type, ntp_type]]
-
-    system_node = Node(name="*", terminal=False)
-    system_node.add(Node(POOL.name, terminal=False))
-    system_node.add(Node(NTP.name, terminal=False))
-
-    pool = POOL.create(system_node)
-    nas = NAS.create(pool)
-    NTP.create(system_node)
-
+def config(pool, nas, ntp):
     try:
-        yield [nas, pool, system_node]
+        yield [nas, pool, SYSTEM]
     finally:
-        while len(KERBEROS.list()):
-            KERBEROS.delete(KERBEROS.list()[0])
-
-        while len(NAS.list()):
-            NAS.delete(NAS.list()[0])
-
-        while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
-
-        while len(NTP.list()):
-            NTP.delete(NTP.list()[0])
+        pool().delete()
+        ntp().delete()
 
 def is_kerberos_existed(nas):
     return len([child for child in nas().children if child.name == KERBEROS.name and child.terminal]) > 0

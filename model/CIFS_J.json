@@ -1,15 +1,16 @@
 {
   "type": "CIFS_J",
+  "base": "CIFS",
   "rules": [
 		{
 		  	"name": "List CIFS",
 		  	"method": "list",
-		  	"time": 0.263636363636
+		  	"time": 0.86
 		},
 		{
 			"name": "Create CIFS",
 			"method": "create",
-		  	"time": 23.344687,
+		  	"time": 50.284938,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -81,7 +82,7 @@
 										"terminal": true,
 										"symbol": [
 											{
-												"name": "CIFS_J",
+												"name": "CIFS",
 												"terminal": true
 											},
 											{
@@ -112,7 +113,7 @@
         {
 			"name": "Modify CIFS",
 			"method": "modify",
-		  	"time": 39.5128307273,
+		  	"time": 60.057416,
 			"left": {
 				"symbol": {
 					"name": "*",
@@ -132,7 +133,7 @@
 										"terminal": true,
 										"symbol": [
 											{
-												"name": "CIFS_J",
+												"name": "CIFS",
 												"terminal": true
 											},
 											{
@@ -178,7 +179,7 @@
 										"terminal": true,
 										"symbol": [
 											{
-												"name": "CIFS_J",
+												"name": "CIFS",
 												"terminal": true
 											},
 											{
@@ -209,7 +210,7 @@
         {
 			"name": "Delete CIFS",
 			"method": "delete",
-		  	"time": 8.46389236364,
+		  	"time": 12.744473,
 			"left": {
 				"symbol": {
 					"name": "*",
@@ -229,7 +230,7 @@
 										"terminal": true,
 										"symbol": [
 											{
-												"name": "CIFS_J",
+												"name": "CIFS",
 												"terminal": true
 											},
 											{

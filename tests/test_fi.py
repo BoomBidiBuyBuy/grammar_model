@@ -1,35 +1,12 @@
-from core.parser import *
+from model.model_fixtures import *
 import pytest
-import os
 
-
-@pytest.fixture(scope="module")
-def nas_nodes(request):
-    path = os.path.dirname(__file__) + "\..\model\\"
-    globals().update(load_model_file(path + "POOL.json"))
-    globals().update(load_model_file(path + "NAS.json"))
-    globals().update(load_model_file(path + "FI.json"))
-
-    system_node = Node(name="*", terminal=False)
-    system_node.add(Node(POOL.name, terminal=False))
-
-    pool = POOL.create(system_node)
-    nas1 = NAS.create(pool)
-    nas2 = NAS.create(pool)
-
-    def finalizer():
-        while len(FI.list()):
-            FI.delete(FI.list()[0])
-
-        while len(NAS.list()):
-            NAS.delete(NAS.list()[0])
-
-        while len(POOL.list()):
-            POOL.delete(POOL.list()[0])
-
-    request.addfinalizer(finalizer)
-
-    return [nas1, nas2, system_node]
+@pytest.yield_fixture(scope="function")
+def nas_nodes(nas, pool):
+    try:
+        yield [nas, NAS.create(pool), SYSTEM]
+    finally:
+        pool().delete()
 
 def check_interface(interface):
     assert interface().name == FI.name
