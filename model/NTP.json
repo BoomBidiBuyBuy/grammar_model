@@ -10,8 +10,8 @@
 			"method": "create",
 			"base": {
 				"symbol": {
-					"name": "NAS",
-					"terminal": true
+					"name": "*",
+					"terminal": false
 				}
 			},
 			"left": {

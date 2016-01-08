@@ -1,0 +1,91 @@
+{
+    "type": "REP",
+    "rules": [
+        {
+            "name": "List REP",
+            "method": "list"
+        },
+        {
+            "name": "Sync REP",
+            "method": "sync"
+        },
+        {
+            "name": "Failover REP",
+            "method": "failover"
+        },
+        {
+            "name": "Failback REP",
+            "method": "failback"
+        },
+        {
+            "name": "Create REP",
+            "method": "create",
+            "base": {
+                "symbol": {
+                    "name": "*",
+                    "terminal": false
+                }
+            },
+            "left": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false
+                }
+            },
+            "right": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false,
+                    "symbol": {
+                      "name": "REP",
+                      "terminal": true
+                    }
+                }
+            }
+        },
+        {
+            "name": "Modify REP",
+            "method": "modify",
+            "left": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false,
+                    "symbol": {
+                        "name": "REP",
+                        "terminal": true
+                    }
+                }
+            },
+            "right": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false,
+                    "symbol": {
+                        "name": "REP",
+                        "terminal": true
+                    }
+                }
+            }
+        },
+        {
+            "name": "Delete REP",
+            "method": "delete",
+            "left": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false,
+                    "symbol": {
+                        "name": "REP",
+                        "terminal": true
+                    }
+                }
+            },
+            "right": {
+                "symbol": {
+                    "name": "REP",
+                    "terminal": false
+                }
+            }
+        }
+    ]
+}

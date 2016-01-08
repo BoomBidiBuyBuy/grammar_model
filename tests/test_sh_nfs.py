@@ -88,3 +88,27 @@ def test_sh_nfs_delete(config):
     sh4().delete()
     assert len(SH_NFS.list()) == 0
     assert sh4() is None
+
+def test_sh_nfs_snap(config):
+    nas, pool = config
+    NFS.create(nas)
+
+    fs = FS_NFS.create(nas)
+    snap = SNAP_NFS.create(fs)
+
+    assert not fs() is None
+    assert not snap() is None
+    assert len(SH_NFS.list()) == 0
+
+    sh1 = SH_NFS.create(fs)
+    sh2 = SH_NFS.create(snap)
+
+    assert len(SH_NFS.list()) == 2
+    assert not sh1() is None
+    assert not sh2() is None
+    assert sh1().parent.parent == fs()
+    assert sh2().parent.parent == snap()
+
+    sh3 = SH_NFS.create(snap)
+    assert len(SH_NFS.list()) == 3
+    assert sh3().parent.parent == snap()

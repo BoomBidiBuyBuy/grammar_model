@@ -379,7 +379,7 @@ class Rule(object):
             return None
         Timer.add(self.time)
 
-        if node is None:
+        if node is None or self.left is None:
             return None
 
         if type(node) is weakref.ReferenceType:

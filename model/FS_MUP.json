@@ -71,6 +71,10 @@
                                       {
                                           "name": "SH_CIFS",
                                           "terminal": false
+                                      },
+                                      {
+                                          "name": "SNAP_MUP",
+                                          "terminal": false
                                       }
                                   ]
                               }

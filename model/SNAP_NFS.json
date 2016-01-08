@@ -1,13 +1,13 @@
 {
-  "type": "SH_NFS",
+  "type": "SNAP_NFS",
   "rules": [
       {
-          "name": "List SH NFS",
+          "name": "List SNAP NFS",
           "method": "list",
           "time": 0.5
       },
       {
-          "name": "Create SH NFS",
+          "name": "Create SNAP NFS",
           "method": "create",
           "time": 0.5,
           "base": {
@@ -18,19 +18,19 @@
           },
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_NFS",
                       "terminal": true,
                       "symbol": {
-                          "name": "HOST",
+                          "name": "SH_NFS",
                           "terminal": false
                       }
                   }
@@ -38,47 +38,47 @@
           }
       },
       {
-          "name": "Modify SH NFS",
+          "name": "Modify SNAP NFS",
           "method": "modify",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_NFS",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_NFS",
                       "terminal": true
                   }
               }
           }
       },
       {
-          "name": "Delete SH NFS",
+          "name": "Delete SNAP NFS",
           "method": "delete",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_NFS",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_NFS",
                   "terminal": false
               }
           }

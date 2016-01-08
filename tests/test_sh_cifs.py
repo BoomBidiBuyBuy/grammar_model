@@ -116,3 +116,67 @@ def test_sh_mup(config):
 
     assert len(SH_CIFS.list()) == 0
     assert len(SH_NFS.list()) == 0
+
+def test_sh_cifs_snap(config):
+    nas, pool = config
+    CIFS_J.create(nas)
+
+    fs = FS_CIFS.create(nas)
+    snap = SNAP_CIFS.create(fs)
+
+    assert not fs() is None
+    assert not snap() is None
+    assert len(SH_CIFS.list()) == 0
+
+    sh1 = SH_CIFS.create(fs)
+    sh2 = SH_CIFS.create(snap)
+
+    assert len(SH_CIFS.list()) == 2
+    assert not sh1() is None
+    assert not sh2() is None
+    assert sh1().parent.parent == fs()
+    assert sh2().parent.parent == snap()
+
+    sh3 = SH_CIFS.create(snap)
+    assert len(SH_CIFS.list()) == 3
+    assert sh3().parent.parent == snap()
+
+def test_sh_mup_snap(config):
+    nas, pool = config
+    CIFS_J.create(nas)
+    NFS.create(nas)
+
+    fs = FS_MUP.create(nas)
+    snap = SNAP_MUP.create(fs)
+
+    assert not fs() is None
+    assert not snap() is None
+    assert len(SH_NFS.list()) == 0
+    assert len(SH_CIFS.list()) == 0
+
+    nfs_sh1 = SH_NFS.create(fs)
+    nfs_sh2 = SH_NFS.create(snap)
+
+    assert len(SH_NFS.list()) == 2
+    assert not nfs_sh1() is None
+    assert not nfs_sh2() is None
+    assert nfs_sh1().parent.parent == fs()
+    assert nfs_sh2().parent.parent == snap()
+
+    cifs_sh1 = SH_CIFS.create(fs)
+    cifs_sh2 = SH_CIFS.create(snap)
+
+    assert len(SH_CIFS.list()) == 2
+    assert not cifs_sh1() is None
+    assert not cifs_sh2() is None
+    assert cifs_sh1().parent.parent == fs()
+    assert cifs_sh2().parent.parent == snap()
+
+    nfs_sh3 = SH_NFS.create(snap)
+    cifs_sh3 = SH_CIFS.create(snap)
+    assert len(SH_CIFS.list()) == 3
+    assert len(SH_NFS.list()) == 3
+    assert not nfs_sh3() is None
+    assert not cifs_sh3() is None
+    assert cifs_sh3().parent.parent == snap()
+    assert nfs_sh3().parent.parent == snap()

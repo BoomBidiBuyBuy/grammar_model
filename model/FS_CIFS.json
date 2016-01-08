@@ -55,10 +55,16 @@
                               "symbol": {
                                   "name": "FS",
                                   "terminal": true,
-                                  "symbol": {
-                                      "name": "SH_CIFS",
-                                      "terminal": false
-                                  }
+                                  "symbol": [
+                                      {
+                                          "name": "SH_CIFS",
+                                          "terminal": false
+                                      },
+                                      {
+                                          "name": "SNAP_CIFS",
+                                          "terminal": false
+                                      }
+                                  ]
                               }
                           }
                       ]

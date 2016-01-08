@@ -1,84 +1,80 @@
 {
-  "type": "SH_NFS",
+  "type": "HOST",
   "rules": [
       {
-          "name": "List SH NFS",
+          "name": "List HOST",
           "method": "list",
           "time": 0.5
       },
       {
-          "name": "Create SH NFS",
+          "name": "Create HOST",
           "method": "create",
           "time": 0.5,
           "base": {
               "symbol": {
-                  "name": "FS",
+                  "name": "SH_NFS",
                   "terminal": true
               }
           },
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
-                      "terminal": true,
-                      "symbol": {
-                          "name": "HOST",
-                          "terminal": false
-                      }
+                      "name": "HOST",
+                      "terminal": true
                   }
               }
           }
       },
       {
-          "name": "Modify SH NFS",
+          "name": "Modify HOST",
           "method": "modify",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "HOST",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "HOST",
                       "terminal": true
                   }
               }
           }
       },
       {
-          "name": "Delete SH NFS",
+          "name": "Delete HOST",
           "method": "delete",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "HOST",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "HOST",
                   "terminal": false
               }
           }

@@ -32,6 +32,11 @@ def load_all():
     result.append(load("FS_MUP.json"))
     result.append(load("SH_NFS.json"))
     result.append(load("SH_CIFS.json"))
+    result.append(load("SNAP_NFS.json"))
+    result.append(load("SNAP_CIFS.json"))
+    result.append(load("SNAP_MUP.json"))
+    result.append(load("HOST.json"))
+    result.append(load("REP.json"))
 
     return result
 
@@ -40,6 +45,7 @@ def load_all():
 system = Node(name="*", terminal=False)
 system.add(Node(POOL.name, terminal=False))
 system.add(Node(NTP.name, terminal=False))
+system.add(Node(REP.name, terminal=False))
 
 globals().update({"SYSTEM": system})
 

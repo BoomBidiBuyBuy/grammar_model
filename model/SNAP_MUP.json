@@ -1,13 +1,13 @@
 {
-  "type": "SH_NFS",
+  "type": "SNAP_MUP",
   "rules": [
       {
-          "name": "List SH NFS",
+          "name": "List SNAP MUP",
           "method": "list",
           "time": 0.5
       },
       {
-          "name": "Create SH NFS",
+          "name": "Create SNAP MUP",
           "method": "create",
           "time": 0.5,
           "base": {
@@ -18,67 +18,73 @@
           },
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_MUP",
                       "terminal": true,
-                      "symbol": {
-                          "name": "HOST",
-                          "terminal": false
-                      }
+                      "symbol": [
+                          {
+                              "name": "SH_CIFS",
+                              "terminal": false
+                          },
+                          {
+                              "name": "SH_NFS",
+                              "terminal": false
+                          }
+                      ]
                   }
               }
           }
       },
       {
-          "name": "Modify SH NFS",
+          "name": "Modify SNAP MUP",
           "method": "modify",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_MUP",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_MUP",
                       "terminal": true
                   }
               }
           }
       },
       {
-          "name": "Delete SH NFS",
+          "name": "Delete SNAP MUP",
           "method": "delete",
           "time": 0.5,
           "left": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SNAP_MUP",
                       "terminal": true
                   }
               }
           },
           "right": {
               "symbol": {
-                  "name": "SH_NFS",
+                  "name": "SNAP_MUP",
                   "terminal": false
               }
           }
