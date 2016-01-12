@@ -1,5 +1,6 @@
 {
   "type": "SNAP_MUP",
+  "base": "SNAP",
   "rules": [
       {
           "name": "List SNAP MUP",
@@ -27,7 +28,7 @@
                   "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_MUP",
+                      "name": "SNAP",
                       "terminal": true,
                       "symbol": [
                           {
@@ -52,7 +53,7 @@
                   "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_MUP",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }
@@ -62,7 +63,7 @@
                   "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_MUP",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }
@@ -77,7 +78,7 @@
                   "name": "SNAP_MUP",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_MUP",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }

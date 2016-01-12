@@ -4,12 +4,20 @@
 	  	{
 		  	"name": "List NAS",
 		  	"method": "list",
-		  	"time": 0.656545454545
+		  	"time": 0.339
+		},
+	  	{
+		  	"name": "Upload to NAS",
+		  	"method": "upload"
+		},
+	  	{
+		  	"name": "Download from NAS",
+		  	"method": "download"
 		},
 		{ 
 			"name": "Create NAS",
 			"method": "create",
-		  	"time": 45.8608738182,
+		  	"time": 37.900691,
 			"base": {
 				"symbol": {
 					"name": "POOL",
@@ -86,7 +94,7 @@
 		{
 			"name": "Modify NAS",
 			"method": "modify",
-		  	"time": 31.4643664,
+		  	"time": 28.542784,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -111,7 +119,7 @@
 		{
 			"name": "Delete NAS",
 			"method": "delete",
-		  	"time": 21.6183112,
+		  	"time": 35.953823,
 			"left": {
 				"symbol": {
 					"name": "NAS",

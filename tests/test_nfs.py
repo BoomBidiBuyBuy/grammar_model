@@ -163,3 +163,38 @@ def test_nfs_ws_wrong(config):
     NFS_WS.create(nas)
     assert len(CIFS.list()) == 1
     assert len(NFS_WS.list()) == 0
+
+def test_delete_all(config):
+    nas1, pool, system = config
+    nas2 = NAS.create(pool)
+    nas3 = NAS.create(pool)
+    NTP.create(system)
+
+    nfs1 = NFS.create(nas1)
+
+    NIS.create(nas2)
+    KERBEROS.create(nas2)
+    nfs2 = NFS_CS.create(nas2)
+
+    FI.create(nas3)
+    DNS.create(nas3)
+    NIS.create(nas3)
+    CIFS_J.create(nas3)
+    nfs3 = NFS_WS.create(nas3)
+
+    assert not nfs1() is None
+    assert not nfs2() is None
+    assert not nfs3() is None
+    assert len(NFS.list()) == 3
+    assert len(NFS_CS.list()) == 1
+    assert len(NFS_WS.list()) == 1
+
+    for nfs in NFS.list():
+        nfs().delete()
+
+    assert nfs1() is None
+    assert nfs2() is None
+    assert nfs3() is None
+    assert len(NFS.list()) == 0
+    assert len(NFS_CS.list()) == 0
+    assert len(NFS_WS.list()) == 0

@@ -1,5 +1,6 @@
 {
   "type": "SH_NFS",
+  "base": "SH",
   "rules": [
       {
           "name": "List SH NFS",
@@ -27,7 +28,7 @@
                   "name": "SH_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SH",
                       "terminal": true,
                       "symbol": {
                           "name": "HOST",
@@ -46,7 +47,7 @@
                   "name": "SH_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }
@@ -56,7 +57,7 @@
                   "name": "SH_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }
@@ -71,7 +72,7 @@
                   "name": "SH_NFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_NFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }

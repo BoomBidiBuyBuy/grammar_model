@@ -4,7 +4,7 @@
 		{
 		  	"name": "List FI",
 		  	"method": "list",
-		  	"time": 0.15
+		  	"time": 0.17
 		},
 		{
 			"name": "Create FI",
@@ -61,7 +61,7 @@
 		{
 			"name": "Delete FI",
 			"method": "delete",
-		    "time": 17.8568206364,
+		    "time": 6.96077,
 			"left": {
 				"symbol": {
 					"name": "FI",

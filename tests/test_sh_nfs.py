@@ -26,7 +26,8 @@ def test_sh_nfs_create(config):
     assert not sh() is None
     assert len(SH_NFS.list()) == 1
     assert sh().parent.parent == fs_nfs()
-    assert sh().name == SH_NFS.name
+    assert sh().name == SH.name
+    assert sh().type == SH_NFS.name
 
     sh_mup = SH_NFS.create(fs_mup)
 
@@ -38,6 +39,7 @@ def test_sh_nfs_create(config):
     assert len(SH_NFS.list()) == 3
     SH_NFS.create(fs_mup)
     assert len(SH_NFS.list()) == 4
+    assert len(SH.list()) == 4
 
 def test_sh_nfs_modify(config):
     nas, pool = config

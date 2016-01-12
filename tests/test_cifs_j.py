@@ -217,3 +217,27 @@ def test_cifs_diff_pools(config):
     assert len(CIFS_J.list()) == 0
     assert cifs1() is None
     assert cifs2() is None
+
+def test_cifs_both_deletion(config):
+    nas1, pool, system = config
+    nas2 = NAS.create(pool)
+    FI.create(nas2)
+    DNS.create(nas2)
+    NTP.create(system)
+
+    cifs_sa = CIFS_SA.create(nas1)
+    cifs_j = CIFS_J.create(nas2)
+    assert not cifs_sa() is None
+    assert not cifs_j() is None
+    assert len(CIFS.list()) == 2
+    assert len(CIFS_SA.list()) == 1
+    assert len(CIFS_J.list()) == 1
+
+    for cifs in CIFS.list():
+        cifs().delete()
+
+    assert cifs_sa() is None
+    assert cifs_j() is None
+    assert len(CIFS.list()) == 0
+    assert len(CIFS_SA.list()) == 0
+    assert len(CIFS_J.list()) == 0

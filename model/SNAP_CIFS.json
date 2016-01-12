@@ -1,5 +1,6 @@
 {
   "type": "SNAP_CIFS",
+  "base": "SNAP",
   "rules": [
       {
           "name": "List SNAP CIFS",
@@ -27,7 +28,7 @@
                   "name": "SNAP_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_CIFS",
+                      "name": "SNAP",
                       "terminal": true,
                       "symbol": {
                           "name": "SH_CIFS",
@@ -46,7 +47,7 @@
                   "name": "SNAP_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_CIFS",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }
@@ -56,7 +57,7 @@
                   "name": "SNAP_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_CIFS",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }
@@ -71,7 +72,7 @@
                   "name": "SNAP_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SNAP_CIFS",
+                      "name": "SNAP",
                       "terminal": true
                   }
               }

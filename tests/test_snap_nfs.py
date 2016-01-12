@@ -19,11 +19,13 @@ def test_snap_nfs_create(config):
     snap = SNAP_NFS.create(fs)
     assert not snap() is None
     assert snap().parent.parent == fs()
-    assert snap().name == SNAP_NFS.name
+    assert snap().name == SNAP.name
+    assert snap().type == SNAP_NFS.name
     assert len(SNAP_NFS.list()) == 1
 
     SNAP_NFS.create(fs)
     assert len(SNAP_NFS.list()) == 2
+    assert len(SNAP.list()) == 2
 
 def test_snap_nfs_modify(config):
     nas, pool = config
@@ -69,5 +71,6 @@ def test_snap_nfs_delete(config):
 
     snap = [SNAP_NFS.create(fs[inx % 2]) for inx in range(4)]
     assert len(SNAP_NFS.list()) == 4
+    assert len(SNAP.list()) == 4
     for inx in range(4):
         assert snap[inx]().parent.parent == fs[inx % 2]

@@ -4,12 +4,12 @@
 		{
 		  	"name": "List KERBEROS",
 		  	"method": "list",
-		  	"time": 0.369454545455
+		  	"time": 0.138
 		},
 		{
 			"name": "Create KERBEROS",
 			"method": "create",
-			"time": 4.2142908,
+			"time": 4.94386,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -84,7 +84,7 @@
     	{
 			"name": "Modify KERBEROS",
 			"method": "modify",
-		  	"time": 0.0,
+		  	"time": 0.529721,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -117,7 +117,7 @@
 		{
 			"name": "Delete KERBEROS",
 			"method": "delete",
-		   	"time": 1.530909875,
+		   	"time": 3.927087,
 			"left": {
 				"symbol": {
 					"name": "NAS",

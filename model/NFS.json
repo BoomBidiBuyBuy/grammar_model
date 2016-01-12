@@ -4,12 +4,12 @@
     {
       "name": "List NFS",
       "method": "list",
-      "time": 0.280727272727
+      "time": 0.104
     },
     {
       "name": "Create NFS",
       "method": "create",
-      "time": 27.896485455,
+      "time": 4.115064,
       "base": {
         "symbol": {
           "name": "NAS",
@@ -48,7 +48,7 @@
     {
       "name": "Modify NFS",
       "method": "modify",
-      "time": 115.302263,
+      "time": 6.788406,
       "left": {
         "symbol": {
           "name": "NAS",
@@ -81,7 +81,7 @@
     {
       "name": "Delete NFS",
       "method": "delete",
-      "time": 5.18423936364,
+      "time": 3.872643,
       "base": {
         "symbol": {
           "name": "NAS",

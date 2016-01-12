@@ -1,0 +1,9 @@
+{
+  "type": "SH",
+  "rules": [
+      {
+          "name": "List SH",
+          "method": "list"
+      }
+  ]
+}

@@ -35,6 +35,7 @@ class Node(object):
         if not other_node is None:
             self.name = other_node.name
             self.terminal = other_node.terminal
+            self.type = other_node.type
             for node in other_node.children:
                 self.add(Node(other_node = node))
 
@@ -440,8 +441,14 @@ class Rule(object):
                     left_inx, right_inx, orig_inx = 0, 0, 0
 
                     # modify case
-                    if len(left.children) == len(right.children) == 0:
+                    if len(left.children) == len(right.children) == 0 and \
+                        passed_node_id and orig.terminal and orig.id == passed_node_id:
                         orig.__dict__.update(**kwargs)
+
+                    # no need id if name is None, but it's not set to None before, because
+                    # it need for checking modify case
+                    if passed_node_name is None:
+                        passed_node_id = None
 
                     while left_inx < len(left.children):
                         left_child  = left.children[left_inx]
@@ -485,7 +492,7 @@ class Rule(object):
                     # We don't need the id below the objects with pointed name,
                     # because there is no such nodes and hence there is no such id.
                     if orig.name == passed_node_name:
-                        passed_node_name, passed_node_id = None, None
+                        passed_node_name = None
 
                     for left_child, right_child, orig_child in zip(left.children, right.children, orig_children):
                         result.extend(merge_diff_rec(left_child, right_child, orig_child, passed_node_id, passed_node_name))

@@ -6,7 +6,7 @@ def t_nis_enable():
 
     nis = getNis( nas )
 
-    NIS.create(nas)
+    NIS.create(nas, is_error = True)
 
     res = NIS.modify(nis, adresses = ['1.1.1.1', '1::34'])
 
@@ -20,9 +20,9 @@ def t_nis_enable():
 def t_nis_auto_switch():
     nas = getNasServer()
 
-    deleteNasInstances(nas, [NFS, NFS_CS, NFS_WS, NIS])
+    deleteNasInstances(nas, [NFS, NIS])
 
-    NAS.modify(nas, currentUnixDirectoryService = "NONE")
+    nas().modify(currentUnixDirectoryService = "NONE")
     assert nas().currentUnixDirectoryService == "NONE"
 
     nis = getNis( nas )
@@ -51,7 +51,7 @@ def t_nis_auto_switch():
 
 def t_nis_warnings():
     nas = getNasServer()
-    deleteNasInstances( nas, [NIS, NFS_CS, NFS_WS] ) # TODO: remove filesystem
+    deleteNasInstances( nas, [NIS, NFS, FS] )
 
     getInterface( nas )
 

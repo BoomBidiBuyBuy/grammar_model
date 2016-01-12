@@ -4,12 +4,12 @@
 		{
 		  	"name": "List LDAP",
 		  	"method": "list",
-		  	"time": 0.174090909091
+		  	"time": 0.127
 		},
     	{
 			"name": "Create LDAP",
 			"method": "create",
-			"time": 95.95813,
+			"time": 46.112852,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -68,7 +68,7 @@
 		{
 			"name": "Modify LDAP",
 			"method": "modify",
-		    "time": 56.9876571,
+		    "time": 61.278616,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -121,7 +121,7 @@
 		{
 			"name": "Delete LDAP",
 			"method": "delete",
-		    "time": 19.0280406,
+		    "time": 12.512115,
 			"left": {
 				"symbol": {
 					"name": "NAS",

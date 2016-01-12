@@ -4,11 +4,12 @@
 	  	{
 		  	"name": "List POOL",
 		  	"method": "list",
-		  	"time": 0.5637
+		  	"time": 0.344
 		},
 		{
 			"name": "Create POOL",
 			"method": "create",
+		  	"time": 28.438845,
 			"base": {
 				"symbol": {
 					"name": "*",
@@ -47,6 +48,7 @@
 		{
 			"name": "Modify POOL",
 			"method": "modify",
+		  	"time": 4.447499,
 			"left": {
 				"symbol": {
 					"name": "*",
@@ -79,6 +81,7 @@
 		{
 			"name": "Delete POOL",
 			"method": "delete",
+		  	"time": 22.1313,
 			"left": {
 				"symbol": {
 					"name": "*",

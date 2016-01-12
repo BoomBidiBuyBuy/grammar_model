@@ -4,7 +4,7 @@
 		{
 		  	"name": "List NDMP",
 		  	"method": "list",
-		  	"time": 0.512
+		  	"time": 0.121
 		},
 		{
 			"name": "Create NDMP",
@@ -48,7 +48,7 @@
 		{
 			"name": "Modify NDMP",
 			"method": "modify",
-		  	"time": 6.3617403,
+		  	"time": 6.969174,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -81,7 +81,7 @@
 		{
 			"name": "Delete NDMP",
 			"method": "delete",
-		  	"time": 3.6274089,
+		  	"time": 3.890798,
 			"left": {
 				"symbol": {
 					"name": "NAS",

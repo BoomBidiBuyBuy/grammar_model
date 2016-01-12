@@ -5,9 +5,7 @@ def t_ldap_simple():
     nas = getNasServer()
     getInterface(nas)
 
-    deleteNasInstances( nas, [NFS, NFS_CS, NFS_WS, LDAP,
-                                KERBEROS, CIFS_J, CIFS_SA,
-                                NIS, DNS])
+    deleteNasInstances( nas, [NFS, LDAP, KERBEROS, CIFS, NIS, DNS])
 
     nas().modify(currectUnixDirectoryService = "NONE")
 
@@ -16,7 +14,7 @@ def t_ldap_simple():
     ldap().modify( portNumber = 389 )
     ldap().modify( serverAddresses = ['1.2.3.4'] )
     ldap().modify( serverAddresses = [''] )
-    ldap().modify( protocol = "LDAPS" )
+    ldap().modify( protocol = "LDAPS", verifyServerCertificate = False )
 
     assert ldap().portNumber == 389
 
@@ -26,9 +24,10 @@ def t_ldap_simple():
                   bindDN = "ab.cd.ef.g",
                   bindPassword = "Pass123!",
                   protocol = "LDAPS",
-                  portNumber = 389 )
+                  portNumber = 389,
+                  verifyServerCertificate = False )
     ldap().modify( protocol = "LDAP", portNumber = 636 )
-    ldap().modify( protocol = "LDAPS" )
+    ldap().modify( protocol = "LDAPS", verifyServerCertificate = False )
 
     assert ldap().portNumber == 636
 
@@ -56,9 +55,7 @@ def t_ldap_kerberos():
     nas = getNasServer()
     getInterface(nas)
 
-    deleteNasInstances( nas, [LDAP, NFS, NFS_CS, NFS_WS,
-                                KERBEROS, CIFS_J, CIFS_SA,
-                                DNS])
+    deleteNasInstances( nas, [LDAP, NFS, KERBEROS, CIFS, DNS])
 
     # no authentication type
     LDAP.create(nas, is_error = True)
@@ -122,7 +119,7 @@ def t_ldap_kerberos_use_cifs():
     nas = getNasServer()
     getInterface(nas)
 
-    deleteNasInstances( nas, [LDAP]) # TODO: delete Filesystem
+    deleteNasInstances( nas, [LDAP, FS])
 
     getInterface(nas)
     getDns(nas)
@@ -153,7 +150,6 @@ def t_ldap_kerberos_use_cifs():
     cifs().delete(is_error = True)
 
     ldap().delete()
-
     cifs().delete()
 
 def t_ldap_cifs_using_other_account():
@@ -319,6 +315,45 @@ def t_ldap_warnings():
 
     nas().modify( isMultiProtocolEnabled = False)
 
+def t_ldap_download_upload_conf():
+    nas = getNasServer()
+    getInterface(nas)
+    getDns(nas)
+
+    nas().download()
+    nas().upload()
+    nas().download()
+    nas().upload()
+    nas().download()
+
+    [nas().upload(is_error = True) for _ in range(4)]
+
+def t_ldap_download_upload_cacert():
+    nas = getNasServer()
+    getInterface(nas)
+    ldap = getLdap(nas, protocol = "LDAPS", verifyServerCertificate = False)
+
+    ldap().modify(is_error = True, verifyServerCertificate = True)
+
+    nas().download()
+    nas().upload(is_error = True)
+    nas().upload(is_error = True)
+    nas().upload()
+    nas().download()
+    nas().upload()
+
+    ldap().modify( verifyServerCertificate = True )
+    ldap().modify( verifyServerCertificate = False )
+
+    ldap().modify( is_error = True, verifyServerCertificate = True )
+
+def t_ldap_upload_content_cacert():
+    nas = getNasServer()
+    getInterface(nas)
+    ldap = getLdap(nas, protocol = "LDAPS", verifyServerCertificate = False)
+
+    nas().upload()
+
 if __name__ == '__main__':
     NTP.create(SYSTEM)
     Timer.enable()
@@ -335,4 +370,7 @@ if __name__ == '__main__':
     t_ldap_bind_password()
     t_ldap_ip_addresses()
     t_ldap_warnings()
+    t_ldap_download_upload_conf()
+    t_ldap_download_upload_cacert()
+    t_ldap_upload_content_cacert()
     print(Timer.time())

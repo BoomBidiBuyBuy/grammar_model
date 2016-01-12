@@ -4,12 +4,12 @@
 		{
 		  	"name": "List NIS",
 		  	"method": "list",
-		  	"time": 0.410181818182
+		  	"time": 0.87
 		},
 		{
 			"name": "Create NIS",
 			"method": "create",
-		  	"time": 38.0475981,
+		  	"time": 36.327922,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -48,7 +48,7 @@
 		{
 			"name": "Modify NIS",
 			"method": "modify",
-		  	"time": 29.045458,
+		  	"time": 22.46279,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -81,7 +81,7 @@
 		{
 			"name": "Delete NIS",
 			"method": "delete",
-		  	"time": 26.2160734,
+		  	"time": 41.235651,
 			"left": {
 				"symbol": {
 					"name": "NAS",
@@ -93,10 +93,6 @@
 							{
 								"name": "NIS",
 								"terminal": true
-							},
-							{
-								"name": "NFS",
-								"terminal": false
 							}
 						]
 					}
@@ -112,10 +108,6 @@
 						"symbol": [
 							{
 								"name": "NIS",
-								"terminal": false
-							},
-							{
-								"name": "NFS",
 								"terminal": false
 							}
 						]

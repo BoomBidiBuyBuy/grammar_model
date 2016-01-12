@@ -5,7 +5,7 @@
       {
           "name": "List FS CIFS",
           "method": "list",
-          "time": 0.5
+          "time": 0.15
       },
       {
           "name": "Create FS CIFS",

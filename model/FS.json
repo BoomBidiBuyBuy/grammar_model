@@ -3,7 +3,8 @@
   "rules": [
       {
           "name": "List FS",
-          "method": "list"
+          "method": "list",
+          "time": 0.15
       }
   ]
 }

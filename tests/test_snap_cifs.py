@@ -19,11 +19,13 @@ def test_snap_cifs_create(config):
     snap = SNAP_CIFS.create(fs)
     assert not snap() is None
     assert snap().parent.parent == fs()
-    assert snap().name == SNAP_CIFS.name
+    assert snap().name == SNAP.name
+    assert snap().type == SNAP_CIFS.name
     assert len(SNAP_CIFS.list()) == 1
 
     SNAP_CIFS.create(fs)
     assert len(SNAP_CIFS.list()) == 2
+    assert len(SNAP.list()) == 2
 
 def test_snap_cifs_modify(config):
     nas, pool = config

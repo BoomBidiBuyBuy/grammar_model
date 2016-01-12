@@ -24,18 +24,21 @@ def test_sh_cifs_create(config):
     assert not sh() is None
     assert len(SH_CIFS.list()) == 1
     assert sh().parent.parent == fs_cifs()
-    assert sh().name == SH_CIFS.name
+    assert sh().name == SH.name
+    assert sh().type == SH_CIFS.name
 
     sh_mup = SH_CIFS.create(fs_mup)
     assert not sh_mup() is None
     assert len(SH_CIFS.list()) == 2
     assert sh_mup().parent.parent == fs_mup()
-    assert sh_mup().name == SH_CIFS.name
+    assert sh_mup().name == SH.name
+    assert sh_mup().type == SH_CIFS.name
 
     SH_CIFS.create(fs_cifs)
     assert len(SH_CIFS.list()) == 3
     SH_CIFS.create(fs_mup)
     assert len(SH_CIFS.list()) == 4
+    assert len(SH.list()) == 4
 
 def test_sh_cifs_modify(config):
     nas, pool = config
@@ -176,6 +179,7 @@ def test_sh_mup_snap(config):
     cifs_sh3 = SH_CIFS.create(snap)
     assert len(SH_CIFS.list()) == 3
     assert len(SH_NFS.list()) == 3
+    assert len(SH.list()) == 6
     assert not nfs_sh3() is None
     assert not cifs_sh3() is None
     assert cifs_sh3().parent.parent == snap()

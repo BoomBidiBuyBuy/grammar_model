@@ -10,7 +10,7 @@
 		{
 			"name": "Create CIFS",
 			"method": "create",
-		  	"time": 50.284938,
+		  	"time": 46.932523,
 			"base": {
 				"symbol": {
 					"name": "NAS",
@@ -113,7 +113,7 @@
         {
 			"name": "Modify CIFS",
 			"method": "modify",
-		  	"time": 60.057416,
+		  	"time": 60.02704832,
 			"left": {
 				"symbol": {
 					"name": "*",
@@ -210,7 +210,7 @@
         {
 			"name": "Delete CIFS",
 			"method": "delete",
-		  	"time": 12.744473,
+		  	"time": 16.296977,
 			"left": {
 				"symbol": {
 					"name": "*",

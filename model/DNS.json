@@ -4,12 +4,12 @@
 		{
 		  	"name": "List DNS",
 		  	"method": "list",
-		  	"time": 0.83
+		  	"time": 0.88
 		},
       	{
 			"name": "Create DNS",
 			"method": "create",
-			"time": 10.357094,
+			"time": 9.764963,
 			"base": {
 				"symbol": {
 					"name": "NAS",

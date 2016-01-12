@@ -1,5 +1,6 @@
 {
   "type": "SH_CIFS",
+  "base": "SH",
   "rules": [
       {
           "name": "List SH CIFS",
@@ -27,7 +28,7 @@
                   "name": "SH_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_CIFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }
@@ -42,7 +43,7 @@
                   "name": "SH_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_CIFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }
@@ -52,7 +53,7 @@
                   "name": "SH_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_CIFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }
@@ -67,7 +68,7 @@
                   "name": "SH_CIFS",
                   "terminal": false,
                   "symbol": {
-                      "name": "SH_CIFS",
+                      "name": "SH",
                       "terminal": true
                   }
               }

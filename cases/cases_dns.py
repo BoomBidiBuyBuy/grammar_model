@@ -1,12 +1,9 @@
 from common import *
 from core.timer import Timer
 
-def t_dns_list():
-    DNS.list()
-
 def t_dns_enable():
     nas = getNasServer(isMultiProtocolEnabled = False)
-    deleteNasInstances(nas, [NFS, LDAP, KERBEROS, CIFS_J, CIFS_SA, NFS_CS, NFS_WS, NFS])
+    deleteNasInstances(nas, [NFS, LDAP, KERBEROS, CIFS, NFS])
 
     dns = getDns(nas)
 
@@ -46,7 +43,7 @@ def t_dns_async():
 
 if __name__ == '__main__':
     Timer.enable()
+    t_dns_async()
     t_dns_enable()
     t_dns_errors()
-    t_dns_async()
     print(Timer.time())
